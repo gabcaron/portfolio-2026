@@ -1,0 +1,66 @@
+@import '~/assets/styles/base/reset';
+
+// ------------------------------------ // ------------------------------------------
+// -------------------------------- U T I L S ---------------------------------------
+// ------------------------------------ // ------------------------------------------
+
+@import '~/assets/styles/utils/variables';
+@import '~/assets/styles/utils/functions';
+@import '~/assets/styles/utils/mixins';
+@import '~/assets/styles/utils/vendors';
+@import '~/assets/styles/utils/responsive';
+
+// ------------------------------------ // ------------------------------------------
+// ------------------------------- S H A R E D --------------------------------------
+// ------------------------------------ // ------------------------------------------
+
+@import '~/assets/styles/shared/descriptions';
+@import '~/assets/styles/shared/titles';
+@import '~/assets/styles/shared/links';
+@import '~/assets/styles/shared/pages';
+@import '~/assets/styles/shared/vertical-titles';
+
+// ------------------------------------ // ------------------------------------------
+// --------------------------------- B A S E ----------------------------------------
+// ------------------------------------ // ------------------------------------------
+
+@import '~/assets/styles/base/fonts';
+@import '~/assets/styles/base/base';
+
+// ------------------------------------ // ------------------------------------------
+// --------------------------- C O M P O N E N T S ----------------------------------
+// ------------------------------------ // ------------------------------------------
+
+@import '~/assets/styles/components/preloader';
+
+// ------------------------------------ // ------------------------------------------
+// ------------------------------- L A Y O U T S ------------------------------------
+// ------------------------------------ // ------------------------------------------
+
+@import '~/assets/styles/layouts/navigation';
+@import '~/assets/styles/layouts/footer';
+
+// ------------------------------------ // ------------------------------------------
+// -------------------------- P A G E S  D I R E C T O R Y --------------------------
+// ------------------------------------ // ------------------------------------------
+
+// Home
+@import '~/assets/styles/pages/home/home';
+
+// About
+@import '~/assets/styles/pages/about/about';
+@import '~/assets/styles/pages/about/content';
+@import '~/assets/styles/pages/about/gallery';
+@import '~/assets/styles/pages/about/highlight';
+
+// Collections
+@import '~/assets/styles/pages/collections/collections';
+
+// Details
+@import '~/assets/styles/pages/details/details';
+
+// Mentions légales
+@import '~/assets/styles/pages/legal/legal';
+
+// Erreur
+@import '~/assets/styles/pages/error/error';

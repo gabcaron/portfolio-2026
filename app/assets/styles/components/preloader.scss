@@ -1,0 +1,72 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: z('preloader');
+  background: $color-sand;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+
+  &__inner {
+    width: 100%;
+    padding: 0 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &__text {
+    font-family: $font-serif;
+    font-size: clamp(3rem, 6vw, 7rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: $color-navy;
+    opacity: 0;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__number {
+    &__text {
+      font-family: $font-sans;
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $color-navy;
+      opacity: 0;
+    }
+  }
+
+  &__bar {
+    width: 100%;
+    height: 1px;
+    background: rgba($color-navy, 0.12);
+    overflow: hidden;
+
+    &__fill {
+      height: 100%;
+      background: $color-orange;
+      transform-origin: left center;
+      // transform: scaleX(0);
+      opacity: 0;
+    }
+  }
+}
+
+@include media('<phone') {
+  .preloader {
+    &__inner {
+      padding: 0 2rem;
+    }
+
+    &__text {
+      font-size: clamp(2rem, 8vw, 4rem);
+    }
+  }
+}

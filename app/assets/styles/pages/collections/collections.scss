@@ -1,0 +1,275 @@
+.projects {
+  position: fixed;
+  inset: 0;
+  background: $color-sand;
+  color: $color-navy;
+  overflow: hidden;
+
+  // ---- Image (légèrement à gauche) ----
+  &__media {
+    position: fixed;
+    left: 8vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52vw;
+    height: auto; // 75vh
+    pointer-events: none;
+    z-index: 1;
+
+    &__image {
+      // opacity: 0;
+      display: block;
+      width: 100%;
+      height: auto; // 100%
+      max-height: 80vh;
+      object-fit: contain; // cover
+    }
+  }
+
+  // ---- Infos droite ----
+  &__content {
+    position: fixed;
+    right: 5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28rem;
+    z-index: 10;
+    pointer-events: none;
+    //opacity: 0;
+  }
+
+  &__articles {
+    position: relative;
+  }
+
+  &__article {
+    pointer-events: auto;
+    opacity: 0;
+
+    &__year {
+      display: block;
+      font-family: $font-sans;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: $color-brown;
+      margin-bottom: 0.6rem;
+    }
+
+    &__category {
+      display: block;
+      font-family: $font-sans;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: $color-orange;
+      margin-bottom: 1.6rem;
+    }
+
+    &__title {
+      font-family: $font-serif;
+      font-size: clamp(2.8rem, 3.5vw, 4.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: $color-navy;
+      margin-bottom: 2rem;
+    }
+
+    &__description {
+      font-family: $font-sans;
+      font-size: 1.4rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba($color-navy, 0.6);
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba($color-navy, 0.1);
+    }
+
+    &__tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2.4rem;
+
+      li {
+        font-family: $font-sans;
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: $color-navy;
+        border: 1px solid rgba($color-navy, 0.2);
+        padding: 0.4rem 1rem;
+        border-radius: 2px;
+        transition: border-color 0.3s $ease-out-expo, color 0.3s $ease-out-expo;
+
+        &:hover {
+          border-color: $color-orange;
+          color: $color-orange;
+        }
+      }
+    }
+
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: $font-sans;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: $color-navy;
+      text-decoration: none;
+      border-bottom: 1px solid $color-navy;
+      padding-bottom: 0.2rem;
+      transition: color 0.3s $ease-out-expo, border-color 0.3s $ease-out-expo;
+
+      svg { transition: transform 0.3s $ease-out-expo; }
+
+      &:hover {
+        color: $color-orange;
+        border-color: $color-orange;
+        svg { transform: translate(3px, -3px); }
+      }
+    }
+  }
+
+  // ---- Compteur ----
+  &__counter {
+    position: fixed;
+    left: 6rem;
+    bottom: 5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-family: $font-sans;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+
+    &__current {
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: $color-navy;
+      font-family: $font-serif;
+    }
+
+    &__sep { font-size: 1.2rem; color: $color-brown; }
+    &__total { font-size: 1.2rem; color: $color-brown; }
+  }
+
+  // ---- Dots ----
+  &__dots {
+    position: fixed;
+    right: 6rem;
+    bottom: 5rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+    opacity: 0;
+    align-items: center;
+  }
+
+  &__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: rgba($color-navy, 0.2);
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    margin: -1rem;
+    transition: background 0.3s $ease-out-expo, width 0.3s $ease-out-expo;
+
+    &--active {
+      background: $color-navy;
+      width: 2rem;
+      border-radius: 0.25rem;
+    }
+
+    &:hover:not(&--active) {
+      background: rgba($color-navy, 0.5);
+    }
+  }
+}
+
+// Transition Vue fade-up
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: opacity 0.4s $ease-out-expo, transform 0.4s $ease-out-expo;
+}
+.fade-up-enter-from {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+@include media('<phone') {
+  .projects {
+    position: relative;
+    inset: auto;
+    overflow: auto;
+    padding-top: 8rem;
+    min-height: 100vh;
+  }
+
+  .projects__media {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    padding: 0 2rem;
+    margin-bottom: 3rem;
+
+    &__image {
+      opacity: 1 !important;
+      width: 100%;
+      height: auto;
+      max-height: 50vh;
+      object-fit: cover;
+    }
+  }
+
+  .projects__content {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    padding: 0 2rem;
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  .projects__article {
+    position: relative;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto;
+  }
+
+  .projects__counter {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    padding: 3rem 2rem 1rem;
+  }
+
+  .projects__dots {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 1 !important;
+  }
+
+  .projects__hint { display: none; }
+}

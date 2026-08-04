@@ -1,0 +1,32 @@
+.footer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 6rem;
+  border-top: 1px solid rgba($color-navy, 0.1);
+  margin-top: 4rem;
+
+  &__copy {
+    font-family: $font-sans;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba($color-navy, 0.4);
+    letter-spacing: 0.05em;
+  }
+
+  &__legal {
+    font-family: $font-sans;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba($color-navy, 0.4);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s $ease-out-expo;
+
+    &:hover {
+      color: $color-navy;
+    }
+  }
+}
