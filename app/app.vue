@@ -56,13 +56,20 @@ canvas.state.template = currentTemplate.value
 let currentPage = null
 let rafId = null
 
+// Sur mobile, seul l'accueil utilise le WebGL (galerie qui défile, non interactive).
+// Les autres pages détruisent les scènes pour garder leur mise en page mobile.
+function changeCanvas(template) {
+  if (!isMobile.value || template === 'home') canvas.onChangeEnd(template)
+  else canvas.onChangeEnd('mobile')
+}
+
 function onPreloaded() {
   isLoading.value = false
   nextTick(() => {
-    if (!isMobile.value) canvas.onResize()
+    canvas.onResize()
     if (currentPage) {
       requestAnimationFrame(() => {
-        if (!isMobile.value) canvas.onChangeEnd(currentTemplate.value)
+        changeCanvas(currentTemplate.value)
         onResize()
       })
     }
@@ -75,7 +82,7 @@ function onPageReady(pageInstance) {
   if (!isLoading.value) {
     if (assetsStore.isReady) {
       requestAnimationFrame(() => {
-        if (!isMobile.value) canvas.onChangeEnd(currentTemplate.value)
+        changeCanvas(currentTemplate.value)
         onResize()
       })
     } else {
@@ -83,7 +90,7 @@ function onPageReady(pageInstance) {
         if (ready) {
           unwatch()
           requestAnimationFrame(() => {
-            if (!isMobile.value) canvas.onChangeEnd(currentTemplate.value)
+            changeCanvas(currentTemplate.value)
             onResize()
           })
         }
@@ -94,9 +101,7 @@ function onPageReady(pageInstance) {
 
 function onResize() {
   currentPage?.onResize?.()
-  if (!isMobile.value) {
-    window.requestAnimationFrame(() => canvas.onResize())
-  }
+  window.requestAnimationFrame(() => canvas.onResize())
 }
 
 function onTouchDown(e) {
@@ -117,7 +122,7 @@ function onWheel(e) {
 
 function loop() {
   currentPage?.update?.()
-  if (!isMobile.value) canvas.update(currentPage?.scroll)
+  canvas.update(currentPage?.scroll)
   rafId = window.requestAnimationFrame(loop)
 }
 
@@ -139,7 +144,7 @@ function onPageLeave(el, done) {
 
 watch(() => route.fullPath, (newPath, oldPath) => {
   if (!oldPath) return
-  if (!isMobile.value) canvas.onChangeStart(canvas.state.template, newPath)
+  canvas.onChangeStart(canvas.state.template, newPath)
 }, { flush: 'pre' })
 
 watch(() => route.name, () => {
@@ -149,10 +154,8 @@ watch(() => route.name, () => {
 onMounted(() => {
   isMobile.value = window.innerWidth < 768
 
-  // Monte le Canvas uniquement sur desktop
-  if (!isMobile.value) {
-    canvas.mountCanvasToDOM()
-  }
+  // Canvas monté partout : sur mobile il ne sert qu'à la galerie de l'accueil
+  canvas.mountCanvasToDOM()
 
   window.addEventListener('wheel', onWheel)
   window.addEventListener('mousedown', onTouchDown)

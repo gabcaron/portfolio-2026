@@ -15,6 +15,7 @@
     height: auto; // 75vh
     pointer-events: none;
     z-index: 1;
+    outline: 1px solid rgba($color-navy, 0.15);
 
     &__image {
       // opacity: 0;
@@ -174,23 +175,35 @@
   }
 
   &__dot {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: rgba($color-navy, 0.2);
+    position: relative;
+    width: 0.8rem;
+    height: 2rem;
+    padding: 0;
+    margin: 0;
     border: none;
+    background: none;
     cursor: pointer;
-    padding: 1rem;
-    margin: -1rem;
-    transition: background 0.3s $ease-out-expo, width 0.3s $ease-out-expo;
+    transition: width 0.4s $ease-out-expo;
 
-    &--active {
-      background: $color-navy;
-      width: 2rem;
-      border-radius: 0.25rem;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 0.8rem;
+      transform: translateY(-50%);
+      border-radius: 0.4rem;
+      background: rgba($color-navy, 0.2);
+      transition: background 0.3s $ease-out-expo;
     }
 
-    &:hover:not(&--active) {
+    &--active {
+      width: 2.4rem;
+      &::before { background: $color-navy; }
+    }
+
+    &:hover:not(&--active)::before {
       background: rgba($color-navy, 0.5);
     }
   }
@@ -217,6 +230,7 @@
     overflow: auto;
     padding-top: 8rem;
     min-height: 100vh;
+    touch-action: pan-y;
   }
 
   .projects__media {
@@ -227,6 +241,7 @@
     width: 100%;
     padding: 0 2rem;
     margin-bottom: 3rem;
+    outline: none;
 
     &__image {
       opacity: 1 !important;
@@ -234,6 +249,7 @@
       height: auto;
       max-height: 50vh;
       object-fit: cover;
+      outline: 1px solid rgba($color-navy, 0.15);
     }
   }
 
@@ -243,7 +259,7 @@
     top: auto;
     transform: none;
     width: 100%;
-    padding: 0 2rem;
+    padding: 0 3rem;
     opacity: 1 !important;
     pointer-events: auto;
   }
@@ -253,13 +269,70 @@
     opacity: 1 !important;
     transform: none !important;
     pointer-events: auto;
+
+    &__year {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    &__category {
+      font-size: 2.2rem;
+      margin-bottom: 2.4rem;
+    }
+
+    &__title {
+      font-size: 6.4rem;
+      margin-bottom: 3rem;
+    }
+
+    &__description {
+      font-size: 2.8rem;
+      line-height: 1.6;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    &__tech {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 4rem;
+
+      li {
+        font-size: 1.8rem;
+        padding: 1rem 0.4rem;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &__link {
+      display: flex;
+      justify-content: center;
+      width: 90%;
+      margin: 0 auto;
+      gap: 1.2rem;
+      font-size: 2.6rem;
+      padding: 0 0 1rem;
+
+      svg {
+        width: 2.6rem;
+        height: 2.6rem;
+      }
+    }
   }
 
   .projects__counter {
     position: relative;
     left: auto;
     bottom: auto;
-    padding: 3rem 2rem 1rem;
+    padding: 5rem 3rem 1rem;
+
+    &__current { font-size: 5.6rem; }
+    &__sep,
+    &__total { font-size: 2.4rem; }
   }
 
   .projects__dots {
@@ -267,8 +340,21 @@
     right: auto;
     bottom: auto;
     justify-content: center;
-    padding: 2rem;
+    gap: 2rem;
+    padding: 3rem 2rem 6rem;
     opacity: 1 !important;
+  }
+
+  .projects__dot {
+    width: 1.6rem;
+    height: 4rem;
+
+    &::before {
+      height: 1.6rem;
+      border-radius: 0.8rem;
+    }
+
+    &--active { width: 5rem; }
   }
 
   .projects__hint { display: none; }

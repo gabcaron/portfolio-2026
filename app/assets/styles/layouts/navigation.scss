@@ -437,9 +437,12 @@
   }
 
   .navigation__link__left {
-    left: 2rem;
-    top: 2rem;
-    font-size: 1.4rem;
+    left: 3rem;
+    top: 1.6rem;
+    width: auto;
+    height: auto;
+    font-size: 3.2rem;
+    line-height: 1.2;
   }
 
   // Hamburger — 3 traits
@@ -467,6 +470,12 @@
       background: $color-navy;
       transition: transform 0.3s $ease-out-expo, opacity 0.3s $ease-out-expo;
       transform-origin: center;
+    }
+
+    // Caché quand le menu est ouvert (la croix du menu prend le relais)
+    &--open {
+      opacity: 0;
+      pointer-events: none;
     }
 
     // Croix quand ouvert
@@ -513,7 +522,7 @@
 
     &__logo {
       font-family: $font-sans;
-      font-size: 1.6rem;
+      font-size: 3.2rem;
       font-weight: 300;
       color: $color-navy;
       text-decoration: none;
@@ -558,12 +567,12 @@
     &__link {
       display: block;
       font-family: $font-serif;
-      font-size: clamp(3.5rem, 11vw, 5rem);
+      font-size: 12rem;
       font-weight: 300;
       color: $color-navy;
       text-decoration: none;
       letter-spacing: -0.02em;
-      line-height: 1.2;
+      line-height: 1.15;
       background: none;
       border: none;
       cursor: pointer;
@@ -587,9 +596,9 @@
     &__availability {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 1.4rem;
       font-family: $font-sans;
-      font-size: 1.2rem;
+      font-size: 2.8rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: $color-brown;
@@ -597,8 +606,8 @@
       &--open { color: $color-orange; }
 
       &__dot {
-        width: 0.5rem;
-        height: 0.5rem;
+        width: 1.2rem;
+        height: 1.2rem;
         border-radius: 50%;
         background: currentColor;
         flex-shrink: 0;
@@ -613,5 +622,84 @@
   // Bandeau nav adapté mobile
   .navigation::before {
     height: 6rem;
+  }
+}
+// Contact panel — plein écran mobile
+@include media('<phone') {
+  .contact-panel {
+    &__drawer {
+      width: 100%;
+      max-width: none;
+      padding: 4rem 3rem;
+    }
+
+    &__close {
+      top: 3rem;
+      right: 3rem;
+      width: 5rem;
+      height: 5rem;
+    }
+
+    &__content {
+      padding-top: 8rem;
+    }
+
+    &__tag {
+      font-size: 2.2rem;
+      margin-bottom: 4rem;
+    }
+
+    &__title {
+      font-size: 13rem;
+      margin-bottom: 5rem;
+    }
+
+    &__desc {
+      font-size: 3rem;
+      line-height: 1.6;
+      margin-bottom: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    &__email {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 3.4rem;
+      padding-bottom: 1.2rem;
+
+      svg {
+        width: 4rem;
+        height: 4rem;
+        flex-shrink: 0;
+      }
+    }
+
+    &__socials {
+      gap: 5rem;
+      margin-top: 5rem;
+    }
+
+    &__social {
+      font-size: 2.6rem;
+    }
+
+    &__footer {
+      padding-top: 4rem;
+
+      span,
+      .contact-panel__availability {
+        font-size: 2.2rem;
+      }
+
+      .contact-panel__availability {
+        gap: 1.2rem;
+      }
+
+      .contact-panel__availability__dot {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
   }
 }

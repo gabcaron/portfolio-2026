@@ -249,8 +249,5 @@
     }
   }
 
-  // Cache la galerie sur mobile
-  .home__gallery {
-    display: none;
-  }
+  // Galerie gardée dans le DOM (invisible) : le WebGL lit ses positions
 }

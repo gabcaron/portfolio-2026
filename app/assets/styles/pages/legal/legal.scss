@@ -152,3 +152,85 @@
     }
   }
 }
+
+@include media('<phone') {
+  .legal {
+    padding-top: 12rem;
+
+    &__wrapper {
+      padding: 0 3rem 15rem;
+    }
+
+    &__header {
+      margin-bottom: 5rem;
+    }
+
+    &__back {
+      font-size: 2.8rem;
+      margin-bottom: 0;
+      padding: 1rem 0;
+    }
+
+    &__lang {
+      gap: 1.6rem;
+
+      &__btn {
+        font-size: 2.8rem;
+        padding: 1rem 0.6rem;
+      }
+
+      &__sep {
+        font-size: 2.8rem;
+      }
+    }
+
+    &__title {
+      font-size: 11rem;
+    }
+
+    &__updated {
+      font-size: 2.4rem;
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+
+    &__intro {
+      font-size: 3rem;
+      line-height: 1.6;
+    }
+
+    &__section {
+      padding: 5rem 0;
+
+      &__title {
+        font-size: 2.2rem;
+        margin-bottom: 3rem;
+      }
+
+      p {
+        font-size: 2.8rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+      }
+
+      ul {
+        padding-left: 4rem;
+        margin: 2rem 0;
+
+        li {
+          font-size: 2.8rem;
+          line-height: 1.6;
+          margin-bottom: 1.2rem;
+        }
+      }
+    }
+
+    &__footer {
+      padding-top: 5rem;
+
+      p {
+        font-size: 2.2rem;
+      }
+    }
+  }
+}

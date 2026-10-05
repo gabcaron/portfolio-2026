@@ -21,6 +21,27 @@ export function useScroll() {
     scroll.target += pixelY
   }
 
+  // Tactile (mobile) : drag vertical + petite inertie au relâchement
+  let touchY = 0
+  let touchDelta = 0
+
+  function onTouchStart(e) {
+    touchY = e.touches[0].clientY
+    touchDelta = 0
+  }
+
+  function onTouchMove(e) {
+    const y = e.touches[0].clientY
+    touchDelta = touchY - y
+    scroll.target += touchDelta
+    touchY = y
+  }
+
+  function onTouchEnd() {
+    scroll.target += touchDelta * 10
+    touchDelta = 0
+  }
+
   function onResize(wrapper) {
     if (wrapper) {
       scroll.limit = wrapper.clientHeight - window.innerHeight
@@ -48,5 +69,5 @@ export function useScroll() {
     scroll.limit = 0
   }
 
-  return { scroll, onWheel, onResize, update, reset }
+  return { scroll, onWheel, onTouchStart, onTouchMove, onTouchEnd, onResize, update, reset }
 }

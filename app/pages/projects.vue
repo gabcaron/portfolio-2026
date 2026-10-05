@@ -1,8 +1,12 @@
 <template>
-  <div class="projects" data-background="#F5F0E6" data-color="#1A2A2F">
+  <div
+    class="projects"
+    @touchstart.passive="onTouchStart"
+    @touchend.passive="onTouchEnd"
+    data-background="#F5F0E6" data-color="#1A2A2F">
 
     <!-- Image — src direct, WebGL par-dessus via canvas global -->
-    <div class="projects__media">
+    <div class="projects__media" ref="mediaEl">
       <img
         ref="imgEl"
         class="projects__media__image"
@@ -80,6 +84,7 @@ const imgEl = ref(null)
 const contentEl = ref(null)
 const counterEl = ref(null)
 const dotsEl = ref(null)
+const mediaEl = ref(null)
 
 const { change: changeColors } = useColors()
 const canvas = useCanvas()
@@ -139,8 +144,21 @@ function goTo(index) {
     }
   })
 
-  // Image : pas de GSAP — WebGL gère le fade via Media.setImage()
-  // imgLoaded passera à false via le watch, puis true via @load
+  // Image : même sortie/entrée que le texte (le mesh WebGL suit les bounds du cadre)
+  GSAP.to(mediaEl.value, {
+    autoAlpha: 0,
+    x: -20,
+    duration: 0.25,
+    ease: 'power2.in',
+    onComplete: () => {
+      nextTick(() => {
+        GSAP.fromTo(mediaEl.value,
+          { autoAlpha: 0, x: 30 },
+          { autoAlpha: 1, x: 0, duration: 0.5, ease: 'power3.out', clearProps: 'transform,opacity,visibility' }
+        )
+      })
+    }
+  })
   setTimeout(() => { isAnimating = false }, 600)
 }
 
@@ -149,10 +167,31 @@ function onWheel(e) {
   else if (e.pixelY < -5) goTo(Math.max(activeIndex.value - 1, 0))
 }
 
+// Swipe gauche/droite (mobile) pour changer de projet
+let touchStartX = 0
+let touchStartY = 0
+
+function onTouchStart(e) {
+  touchStartX = e.touches[0].clientX
+  touchStartY = e.touches[0].clientY
+}
+
+function onTouchEnd(e) {
+  const dx = e.changedTouches[0].clientX - touchStartX
+  const dy = e.changedTouches[0].clientY - touchStartY
+  if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return
+  if (dx < 0) goTo(Math.min(activeIndex.value + 1, projects.value.length - 1))
+  else goTo(Math.max(activeIndex.value - 1, 0))
+}
+
 function animateIn() {
   GSAP.fromTo('.projects__article',
     { autoAlpha: 0, x: 30 },
     { autoAlpha: 1, x: 0, duration: 1, ease: 'expo.out', delay: 0.2 }
+  )
+  GSAP.fromTo(mediaEl.value,
+    { autoAlpha: 0, x: 30 },
+    { autoAlpha: 1, x: 0, duration: 1, ease: 'expo.out', delay: 0.1, clearProps: 'transform,opacity,visibility' }
   )
   GSAP.fromTo(counterEl.value,
     { autoAlpha: 0 },

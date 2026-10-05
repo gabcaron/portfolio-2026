@@ -216,7 +216,8 @@ const ctaEl = ref(null)
 
 // --- Composables ---
 const emit = defineEmits(['page-ready'])
-const { scroll, onWheel, onResize, update, reset } = useScroll()
+const { scroll, onWheel, onTouchStart, onTouchMove, onTouchEnd, onResize, update, reset } = useScroll()
+let resizeObserver = null
 const { change: changeColors } = useColors()
 
 // --- Animations (inchangées) ---
@@ -279,6 +280,14 @@ onMounted(() => {
   changeColors({ backgroundColor: '#F5F0E6', color: '#1A2A2F' })
   nextTick(() => {
     onResize(wrapperEl.value)
+
+    // Recalcule la limite de scroll quand la hauteur change (images, polices, responsive)
+    resizeObserver = new ResizeObserver(() => onResize(wrapperEl.value))
+    resizeObserver.observe(wrapperEl.value)
+
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: true })
+    window.addEventListener('touchend', onTouchEnd, { passive: true })
     animateHero()
     animateIntro()
     animateSkills()
@@ -293,5 +302,11 @@ onMounted(() => {
   })
 })
 
-onUnmounted(() => reset())
+onUnmounted(() => {
+  resizeObserver?.disconnect()
+  window.removeEventListener('touchstart', onTouchStart)
+  window.removeEventListener('touchmove', onTouchMove)
+  window.removeEventListener('touchend', onTouchEnd)
+  reset()
+})
 </script>

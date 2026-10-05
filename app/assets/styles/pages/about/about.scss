@@ -376,14 +376,14 @@
 @include media('<phone') {
   .about {
     &__hero {
-      padding: 8rem 2.5rem 3rem;
+      padding: 14rem 3rem 5rem;
 
       // "About Me." sur une seule ligne
       &__line {
         display: inline;
 
         span {
-          font-size: clamp(4rem, 13vw, 6rem);
+          font-size: 16rem;
           display: inline;
         }
       }
@@ -394,95 +394,174 @@
       }
 
       &__sub {
-        font-size: 1.4rem;
-        margin-top: 2rem;
+        font-size: 3rem;
+        margin-top: 3rem;
+        max-width: none;
         display: block; // repasse en block pour les 3 lignes
       }
     }
 
     &__intro {
       grid-template-columns: 1fr;
-      gap: 3rem;
-      padding: 3rem 2.5rem;
+      gap: 5rem;
+      padding: 5rem 3rem;
 
       &__media {
         position: relative;
         top: auto;
+
+        &__label {
+          font-size: 2rem;
+          margin-top: 2rem;
+        }
+      }
+
+      &__tag {
+        font-size: 2.2rem;
+        margin-bottom: 4rem;
+      }
+
+      &__bio {
+        font-size: 3rem;
+        line-height: 1.6;
+        margin-bottom: 3rem;
       }
 
       &__meta {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 2rem;
-        margin-top: 3rem;
+        gap: 3rem;
+        margin-top: 5rem;
+        padding-top: 5rem;
 
         &__item {
           flex: 1;
-          min-width: 8rem;
+          min-width: 18rem;
+          gap: 1rem;
         }
 
         &__label {
-          font-size: 0.9rem;
+          font-size: 2rem;
         }
 
         &__value {
-          font-size: 1.3rem;
+          font-size: 2.8rem;
         }
       }
     }
 
     &__skills {
-      padding: 3rem 2.5rem;
+      padding: 6rem 3rem;
 
       &__header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1.5rem;
-        margin-bottom: 4rem;
+        gap: 2.5rem;
+        margin-bottom: 6rem;
+      }
+
+      &__tag {
+        font-size: 2.2rem;
       }
 
       &__title {
-        font-size: clamp(3rem, 10vw, 5rem);
+        font-size: 10rem;
         text-align: left;
       }
 
       &__grid {
         grid-template-columns: 1fr 1fr;
-        gap: 3rem;
+        gap: 5rem 4rem;
+      }
+
+      &__category__name {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.6rem;
+      }
+
+      &__list {
+        gap: 0.5rem;
+      }
+
+      &__item {
+        font-size: 2.8rem;
+        padding: 1.2rem 0;
       }
     }
 
     &__philosophy {
-      padding: 3rem 2.5rem;
+      padding: 8rem 3rem;
+
+      &__tag {
+        font-size: 2.2rem;
+        margin-bottom: 5rem;
+      }
 
       &__quote {
-        font-size: clamp(1.8rem, 4.5vw, 2.8rem);
-        margin-bottom: 5rem;
+        font-size: 5.6rem;
+        margin-bottom: 8rem;
+        max-width: none;
       }
 
       &__pillars {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 6rem;
+      }
+
+      &__pillar {
+        &__number {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        h3 {
+          font-size: 5rem;
+          margin-bottom: 2rem;
+        }
+
+        p {
+          font-size: 2.8rem;
+          line-height: 1.6;
+        }
       }
     }
 
     &__cta {
-      padding: 5rem 2.5rem;
+      padding: 10rem 3rem;
+
+      &__inner {
+        max-width: none;
+      }
 
       &__title {
-        font-size: clamp(4rem, 12vw, 6rem);
+        font-size: 13rem;
+        margin-bottom: 6rem;
       }
 
       &__email {
-        font-size: 1.3rem;
-        word-break: break-all;
-        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 3.4rem;
+        padding-bottom: 1.2rem;
+
+        svg {
+          width: 4rem;
+          height: 4rem;
+          flex-shrink: 0;
+        }
       }
 
       &__links {
         flex-direction: row;
-        gap: 2rem;
+        gap: 5rem;
+        margin-top: 5rem;
+      }
+
+      &__link {
+        font-size: 2.6rem;
       }
     }
   }
