@@ -350,19 +350,20 @@ useSEO({
 const year = new Date().getFullYear()
 const lang = ref('en') // anglais par défaut
 
+// Date de dernière modification réelle des mentions : à mettre à jour à la main
+const LAST_UPDATED = new Date('2026-10-05')
+
 const lastUpdated = computed(() => {
-  return new Date().toLocaleDateString(lang.value === 'fr' ? 'fr-FR' : 'en-GB', {
+  return LAST_UPDATED.toLocaleDateString(lang.value === 'fr' ? 'fr-FR' : 'en-GB', {
     day: 'numeric', month: 'long', year: 'numeric'
   })
 })
 
 // Met à jour le title selon la langue
-watch(lang, (l) => {
-  useHead({
-    title: l === 'fr'
-      ? 'Mentions légales - Gabin Caron | Web Developer'
-      : 'Legal Notice - Gabin Caron | Web Developer'
-  })
+useHead({
+  title: computed(() => lang.value === 'fr'
+    ? 'Mentions légales - Gabin Caron | Web Developer'
+    : 'Legal Notice - Gabin Caron | Web Developer')
 })
 
 const wrapperEl = ref(null)
@@ -372,31 +373,22 @@ let resizeObserver = null
 
 onMounted(() => {
   nextTick(() => {
-    setTimeout(() => {
-      onResize(wrapperEl.value)
+    onResize(wrapperEl.value)
 
-      // Recalcule la limite de scroll quand la hauteur change (polices, langue, responsive)
-      resizeObserver = new ResizeObserver(() => onResize(wrapperEl.value))
-      resizeObserver.observe(wrapperEl.value)
+    // Recalcule la limite de scroll quand la hauteur change (polices, langue, responsive)
+    resizeObserver = new ResizeObserver(() => onResize(wrapperEl.value))
+    resizeObserver.observe(wrapperEl.value)
 
-      window.addEventListener('touchstart', onTouchStart, { passive: true })
-      window.addEventListener('touchmove', onTouchMove, { passive: true })
-      window.addEventListener('touchend', onTouchEnd, { passive: true })
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: true })
+    window.addEventListener('touchend', onTouchEnd, { passive: true })
 
-      emit('page-ready', {
-        scroll,
-        update: () => update(wrapperEl.value),
-        onWheel,
-        onResize: () => onResize(wrapperEl.value)
-      })
-    }, 100)
-  })
-})
-
-// Recalcule le scroll limit quand la langue change (le contenu change de hauteur)
-watch(lang, () => {
-  nextTick(() => {
-    setTimeout(() => onResize(wrapperEl.value), 50)
+    emit('page-ready', {
+      scroll,
+      update: () => update(wrapperEl.value),
+      onWheel,
+      onResize: () => onResize(wrapperEl.value)
+    })
   })
 })
 
