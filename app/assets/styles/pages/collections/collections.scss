@@ -231,6 +231,9 @@
     padding-top: 8rem;
     min-height: 100vh;
     touch-action: pan-y;
+    // Contient les z-index internes (10) pour qu'ils restent sous le menu
+    isolation: isolate;
+    z-index: 0;
   }
 
   .projects__media {
