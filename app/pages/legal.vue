@@ -54,9 +54,9 @@
         <section class="legal__section">
           <h2 class="legal__section__title">2. Hébergement</h2>
           <p>
-            Maintenance et hébergement : <strong>À compléter</strong><br>
-            Nom de domaine : <strong>À compléter</strong><br>
-            Adresse du site : <a href="https://gabincaron.com" target="_blank">gabincaron.dev</a>
+            Maintenance et hébergement : <a href="https://vercel.com" target="_blank">vercel.com</a><br>
+            Nom de domaine : <a href="https://www.gabincaron.com" target="_blank">gabincaron.com</a><br>
+            Adresse du site : <a href="https://www.gabincaron.com" target="_blank">https://www.gabincaron.com</a>
           </p>
         </section>
 
@@ -205,9 +205,9 @@
         <section class="legal__section">
           <h2 class="legal__section__title">2. Hosting</h2>
           <p>
-            Maintenance and hosting: <strong>To be completed</strong><br>
-            Domain name: <strong>To be completed</strong><br>
-            Website address: <a href="https://gabincaron.com" target="_blank">gabincaron.dev</a>
+            Maintenance and hosting: <a href="https://vercel.com" target="_blank">vercel.com</a><br>
+            Domain name: <a href="https://www.gabincaron.com" target="_blank">gabincaron.com</a><br>
+            Website address: <a href="https://www.gabincaron.com" target="_blank">https://www.gabincaron.com</a>
           </p>
         </section>
 
