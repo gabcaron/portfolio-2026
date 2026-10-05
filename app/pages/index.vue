@@ -2,8 +2,8 @@
   <div class="home" data-background="#F5F0E6" data-color="#1A2A2F">
     <div class="home__wrapper">
       <div class="home__titles">
-        <div class="home__titles__title">Gabin</div>
-        <div class="home__titles__label">Web Developer & Explorer</div>
+        <div ref="titleEl" class="home__titles__title">Gabin</div>
+        <div ref="labelEl" class="home__titles__label">Web Developer & Explorer</div>
       </div>
 
       <div class="home__gallery">
@@ -41,7 +41,31 @@ const home = computed(() => data.value?.home)
 
 const emit = defineEmits(['page-ready'])
 
+const titleEl = ref(null)
+const labelEl = ref(null)
+
+// Mobile : ajuste la taille du label pour qu'il ait la même largeur que "Gabin"
+function fitLabel() {
+  const title = titleEl.value
+  const label = labelEl.value
+  if (!title || !label) return
+
+  label.style.fontSize = ''
+  if (window.innerWidth >= 768) return
+
+  const titleWidth = title.getBoundingClientRect().width
+  const labelWidth = label.getBoundingClientRect().width
+  if (!labelWidth) return
+
+  const currentSize = parseFloat(getComputedStyle(label).fontSize)
+  label.style.fontSize = `${currentSize * (titleWidth / labelWidth)}px`
+}
+
 onMounted(() => {
+  document.fonts?.ready.then(fitLabel)
+  fitLabel()
+  window.addEventListener('resize', fitLabel)
+
   nextTick(() => {
     emit('page-ready', {
       scroll: null,  // Home n'a pas de scroll DOM
@@ -51,6 +75,8 @@ onMounted(() => {
     })
   })
 })
+
+onUnmounted(() => window.removeEventListener('resize', fitLabel))
 
 // NB: la classe webgl Home s'appuie sur document.querySelector('.home__gallery')
 // et les <img data-src> du DOM réel ci-dessus — il faut donc que ce template
