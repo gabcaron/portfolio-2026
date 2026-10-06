@@ -4,6 +4,12 @@
       <div class="home__titles">
         <div ref="titleEl" class="home__titles__title">Gabin</div>
         <div ref="labelEl" class="home__titles__label">Web Developer & Explorer</div>
+        <NuxtLink to="/projects" class="home__titles__link">
+          See my work
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </NuxtLink>
       </div>
 
       <div class="home__gallery">
@@ -44,14 +50,13 @@ const emit = defineEmits(['page-ready'])
 const titleEl = ref(null)
 const labelEl = ref(null)
 
-// Mobile : ajuste la taille du label pour qu'il ait la même largeur que "Gabin"
+// Ajuste la taille du label pour qu'il ait la même largeur que "Gabin"
 function fitLabel() {
   const title = titleEl.value
   const label = labelEl.value
   if (!title || !label) return
 
   label.style.fontSize = ''
-  if (window.innerWidth >= 768) return
 
   const titleWidth = title.getBoundingClientRect().width
   const labelWidth = label.getBoundingClientRect().width
