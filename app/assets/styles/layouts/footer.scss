@@ -1,8 +1,10 @@
 .footer {
   position: relative;
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
+  // 3 colonnes : copyright à gauche, statut au centre, mentions à droite
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
   align-items: center;
   padding: 3rem 6rem;
   border-top: 1px solid rgba($color-navy, 0.1);
@@ -12,15 +14,49 @@
     font-family: $font-sans;
     font-size: 1.1rem;
     font-weight: 300;
-    color: rgba($color-navy, 0.4);
+    color: rgba($color-navy, 0.6);
     letter-spacing: 0.05em;
   }
 
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: $font-sans;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba($color-navy, 0.6);
+  }
+
+  &__availability {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: $color-brown; // "Not available"
+    transition: color 0.3s $ease-out-expo;
+
+    &--open { color: $color-orange; }
+
+    &__dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    &--open &__dot {
+      animation: footer-pulse 2s ease-in-out infinite;
+    }
+  }
+
   &__legal {
+    justify-self: end;
     font-family: $font-sans;
     font-size: 1.1rem;
     font-weight: 300;
-    color: rgba($color-navy, 0.4);
+    color: rgba($color-navy, 0.6);
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: color 0.3s $ease-out-expo;
@@ -31,17 +67,35 @@
   }
 }
 
+@keyframes footer-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
 @include media('<phone') {
   .footer {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 2rem;
     padding: 5rem 3rem 6rem;
 
     &__copy,
-    &__legal {
+    &__legal,
+    &__status {
       font-size: 2.2rem;
       line-height: 1.5;
+    }
+
+    &__status { gap: 1.2rem; }
+
+    &__availability {
+      gap: 1.2rem;
+
+      &__dot {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
     }
   }
 }

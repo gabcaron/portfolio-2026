@@ -1,177 +1,301 @@
-.detail {
-  @extend %page;
-  @extend %center;
+// ============================================================
+// CASE STUDY — /detail/[uid]
+// Valeurs reprises de la maquette (1440px) : 1rem = 7.5px à cette largeur
+// ============================================================
 
-  // background-color: $color-quicksand;
-  // color: $color-white;
+$case-muted: #4E595B;
+$case-line: #C9C2B4;
 
-  @include media('<phone') {
-    height: auto;
+.case {
+  background: $color-sand;
+  color: $color-navy;
+  min-height: 100vh;
+  font-family: $font-body;
+
+  &__wrapper {
+    will-change: transform;
+    max-width: 181.3rem;
+    margin: 0 auto;
+    padding: 21.9rem 5.3rem 0;
   }
-}
-.detail__wrapper {
-  display: flex;
-  align-items: center;
 
-  @include media('<phone') {
+  // ---- ① HERO ----
+  &__hero {
+    padding-bottom: 7.47rem;
+  }
+
+  &__back {
+    display: inline-block;
+    padding: 1.6rem 0;
+    margin-bottom: 5.3rem;
+    font-size: 1.73rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: $case-muted;
+    text-decoration: none;
+    transition: color 0.3s $ease-out-expo;
+
+    &:hover { color: $color-orange; }
+  }
+
+  &__tag {
     display: block;
-    margin: auto;
-    padding: 16rem 0;
-    width: 66.1rem;
+    font-size: 1.73rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: $color-orange;
+    margin-bottom: 2.67rem;
+  }
+
+  &__title {
+    max-width: 146.7rem;
+    font-family: $font-display;
+    font-size: clamp(7.47rem, 9vw, 18.1rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.015em;
+    color: $color-navy;
+
+    em {
+      font-style: italic;
+      color: $color-green;
+    }
+  }
+
+  &__tagline {
+    max-width: 90.7rem;
+    margin-top: 4.27rem;
+    font-size: 2.8rem;
+    line-height: 1.55;
+    color: $case-muted;
+  }
+
+  // ---- ② META ----
+  &__meta {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3.2rem;
+    margin: 0 0 8.53rem;
+    padding: 3.73rem 0;
+    border-top: 1px solid $color-navy;
+    border-bottom: 1px solid $case-line;
+
+    dt {
+      font-size: 1.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: $case-muted;
+    }
+
+    dd {
+      margin: 0.8rem 0 0;
+      font-size: 2.27rem;
+      color: $color-navy;
+    }
+
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: $color-navy;
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      transition: color 0.3s $ease-out-expo;
+
+      // Flèche identique au lien mail du popup contact
+      svg {
+        width: 2rem;
+        height: 2rem;
+        transition: transform 0.3s $ease-out-expo;
+      }
+
+      &:hover {
+        color: $color-orange;
+        svg { transform: translate(3px, -3px); }
+      }
+    }
+  }
+
+  // ---- ③ IMAGE ----
+  &__media {
+    margin: 0 0 16rem;
+    background: #fff;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 0 4rem 8rem -4rem rgba($color-navy, 0.35);
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      object-fit: cover;
+    }
+  }
+
+  // ---- ④ ÉTAPES ----
+  &__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7.47rem;
+    margin-bottom: 16rem;
+  }
+
+  &__step {
+    &__label {
+      display: block;
+      font-size: 1.73rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: $color-orange;
+      margin-bottom: 2.13rem;
+    }
+
+    p {
+      font-size: 2.4rem;
+      line-height: 1.65;
+      color: $color-navy;
+    }
+  }
+
+  // ---- ⑤ VISUELS ----
+  &__visuals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4.27rem;
+    margin-bottom: 16rem;
+  }
+
+  &__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4 / 3;
+    padding: 3.2rem;
+    background: #EDE7DB;
+    border: 1.5px dashed #9A9284;
+    border-radius: 0.8rem;
+    font-size: 1.87rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: center;
+    color: $case-muted;
+  }
+
+  // ---- ⑥ NEXT PROJECT ----
+  &__next {
+    display: block;
+    margin: 0 -5.3rem;
+    padding: 9.6rem 5.3rem 12.8rem;
+    border-top: 1px solid $color-navy;
+    color: $color-navy;
+    text-decoration: none;
+
+    &__label {
+      display: block;
+      font-size: 1.73rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: $case-muted;
+      margin-bottom: 2.13rem;
+    }
+
+    &__row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 3.2rem;
+    }
+
+    &__title {
+      font-family: $font-display;
+      font-size: clamp(6.4rem, 7vw, 13.9rem);
+      font-weight: 300;
+      line-height: 1;
+      color: $color-navy;
+      transition: color 0.4s $ease-out-expo;
+
+      em {
+        font-style: italic;
+        color: $color-green;
+      }
+    }
+
+    &__arrow {
+      font-size: 5.33rem;
+      transition: transform 0.4s $ease-out-expo;
+    }
+
+    // Survol de toute la section : titre orange + flèche qui avance
+    &:hover {
+      .case__next__title { color: $color-orange; }
+      .case__next__arrow { transform: translateX(1rem); }
+    }
+  }
+
+  .footer {
+    font-family: $font-body;
   }
 }
 
-.detail__media {
-  width: 55.4rem;
-  height: 78.2rem;
-  position: relative;
+// Footer pleine largeur (annule le padding du wrapper)
+.case .footer {
+  margin: 0 -5.3rem;
+}
 
-  @include media('<phone') {
-    width: 100%;
-    height: 93.4rem;
-    margin: 0 auto 7.8rem;
+@include media('<phone') {
+  .case .footer {
+    margin: 0 -3rem;
   }
-}
 
-.detail__media__image {
-  @extend %cover;
+  .case {
+    // Contient les z-index internes pour qu'ils restent sous le menu
+    isolation: isolate;
+    z-index: 0;
 
-  object-fit: cover;
-}
+    &__wrapper { padding: 14rem 3rem 0; }
 
-.detail__information {
-  padding-left: 8.2rem;
+    &__back { font-size: 2.2rem; }
+    &__tag { font-size: 2.2rem; }
+    &__title { font-size: 15rem; }
 
-  @include media('<phone') {
-    padding-left: 0;
+    &__tagline {
+      max-width: none;
+      font-size: 3rem;
+    }
+
+    &__meta {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+
+      dt { font-size: 2rem; }
+      dd { font-size: 2.8rem; }
+    }
+
+    &__steps {
+      grid-template-columns: 1fr;
+      gap: 6rem;
+    }
+
+    &__step {
+      &__label { font-size: 2.2rem; }
+      p { font-size: 3rem; line-height: 1.6; }
+    }
+
+    &__visuals {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    &__placeholder { font-size: 2.2rem; }
+
+    &__next {
+      margin: 0 -3rem;
+      padding: 6rem 3rem 12rem;
+
+      &__label { font-size: 2.2rem; }
+      &__title { font-size: 11rem; }
+      &__arrow { font-size: 6rem; }
+    }
   }
-}
-
-.detail__information__collection {
-  @extend %description-12;
-  margin-bottom: 4rem;
-  text-transform: uppercase;
-}
-
-.detail__information__title {
-  @extend %title-120;
-
-  max-width: 60rem;
-}
-
-.detail__information__content {
-  padding-left: 18rem;
-
-  @include media('<phone') {
-    padding-left: 0;
-  }
-}
-.detail__information__highlights {
-  margin-top: 5rem;
-}
-
-.detail__information__highlight {
-  align-items: center;
-  display: flex;
-
-  &:not(:first-child) {
-    margin-top: 4rem;
-  }
-}
-
-.detail__information__highlight__icon {
-  /*border: 1px solid #e6e6e6;*/
-  border-radius: 50%;
-  height: 4rem;
-  width: 4rem;
-  margin-right: 3.75rem;
-
-  @include media('<phone') {
-    height: 9.2rem;
-    width: 9.2rem;
-    margin-right: 5.8rem;
-  }
-}
-
-.detail__information__highlight__text {
-  @extend %description-16;
-}
-
-.detail__information__list {
-  margin-top: 4rem;
-}
-
-.detail__information__item {
-  display: flex;
-
-  &:not(:first-child) {
-    margin-top: 4rem;
-  }
-}
-
-.detail__information__item__title {
-  @extend %description-12;
-  padding-right: 2.5rem;
-  width: 10rem;
-
-  @include media('<phone') {
-    width: 15rem;
-    padding-right: 5rem;
-  }
-}
-
-.detail__information__item__description {
-  @extend %description-16;
-
-  letter-spacing: 0.03rem;
-  max-width: 44rem;
-}
-
-.detail__information__link {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-  margin-right: auto;
-  margin-top: 3rem;
-  width: fit-content;
-
-  @extend %title-30;
-}
-
-.detail__information__link::before {
-  content: "↗";
-  font-family: "Suisse BP";
-  font-weight: 100;
-  margin-left: 1rem;
-  margin-top: -0.2rem;
-}
-
-.detail__information__link::after {
-  transform: scaleX(0);
-  transform-origin: right center;
-}
-
-.detail__button {
-  @extend %description-14;
-
-  width: 12.4rem;
-  height: 6rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 50%;
-  bottom: 5rem;
-  position: absolute;
-  transform: translateX(-50%);
-  z-index: 2;
-
-  @include media('<phone') {
-    width: 26.8rem;
-    height: 26.8rem;
-    bottom: 0;
-  }
-}
-
-.detail__button__icon {
-  @extend %cover;
 }

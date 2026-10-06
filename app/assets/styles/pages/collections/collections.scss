@@ -1,364 +1,359 @@
+// ============================================================
+// PAGE PROJECTS — liste + projets + contact
+// Valeurs reprises de la maquette (1440px) : 1rem = 7.5px à cette largeur
+// ============================================================
+
+$projects-muted: #4E595B;
+$projects-line: #C9C2B4;
+$projects-hover: #ECE6DA;
+
 .projects {
-  position: fixed;
-  inset: 0;
   background: $color-sand;
   color: $color-navy;
-  overflow: hidden;
+  min-height: 100vh;
+  font-family: $font-body;
 
-  // ---- Image (légèrement à gauche) ----
-  &__media {
-    position: fixed;
-    left: 8vw;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 52vw;
-    height: auto; // 75vh
-    pointer-events: none;
-    z-index: 1;
-    outline: 1px solid rgba($color-navy, 0.15);
-
-    &__image {
-      // opacity: 0;
-      display: block;
-      width: 100%;
-      height: auto; // 100%
-      max-height: 80vh;
-      object-fit: contain; // cover
-    }
+  &__wrapper {
+    will-change: transform;
   }
 
-  // ---- Infos droite ----
-  &__content {
-    position: fixed;
-    right: 5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 28rem;
-    z-index: 10;
-    pointer-events: none;
-    //opacity: 0;
-  }
+  // ---- ① HERO ----
+  &__hero {
+    max-width: 181.3rem;
+    margin: 0 auto;
+    padding: 25rem 5.3rem 18.7rem;
 
-  &__articles {
-    position: relative;
-  }
-
-  &__article {
-    pointer-events: auto;
-    opacity: 0;
-
-    &__year {
-      display: block;
-      font-family: $font-sans;
-      font-size: 1rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: $color-brown;
-      margin-bottom: 0.6rem;
+    &__top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 6.4rem;
+      padding-bottom: 9.6rem;
     }
 
-    &__category {
+    &__tag {
       display: block;
-      font-family: $font-sans;
-      font-size: 1rem;
-      letter-spacing: 0.15em;
+      font-family: $font-body;
+      font-size: 1.73rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: $color-orange;
-      margin-bottom: 1.6rem;
+      margin-bottom: 3.2rem;
     }
 
     &__title {
-      font-family: $font-serif;
-      font-size: clamp(2.8rem, 3.5vw, 4.2rem);
+      font-family: $font-display;
+      font-size: clamp(9.6rem, 13vw, 26.1rem);
       font-weight: 300;
-      line-height: 1.1;
+      line-height: 0.9;
       letter-spacing: -0.02em;
       color: $color-navy;
-      margin-bottom: 2rem;
+    }
+
+    &__count {
+      font-size: 0.22em;
+      font-weight: 400;
+      vertical-align: top;
+      margin-left: 1.6rem;
+      letter-spacing: 0;
+    }
+
+    &__intro {
+      max-width: 53.3rem;
+      font-family: $font-body;
+      font-size: 2.4rem;
+      line-height: 1.6;
+      color: $projects-muted;
+
+      em {
+        font-family: $font-display;
+        font-size: 2.67rem;
+        color: $color-green;
+      }
+    }
+  }
+
+  // ---- Liste ----
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid $color-navy;
+
+    &__row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 1.6rem 4.27rem;
+      padding: 3.73rem 1.07rem;
+      border-bottom: 1px solid $projects-line;
+      cursor: pointer;
+      transition: background 0.4s $ease-out-expo;
+
+      // Ligne survolée : teinte légèrement plus foncée que le fond
+      &:hover {
+        background: $projects-hover;
+
+        .projects__list__title { color: $color-orange; }
+      }
+    }
+
+    &__number {
+      flex: 0 0 6.4rem;
+      font-size: 1.87rem;
+      color: $projects-muted;
+    }
+
+    &__title {
+      flex: 1 1 42.7rem;
+      font-family: $font-display;
+      font-size: 5.33rem;
+      font-weight: 400;
+      line-height: 1.1;
+      color: $color-navy;
+      transition: color 0.3s $ease-out-expo;
+    }
+
+    &__summary {
+      flex: 1 1 32rem;
+      font-size: 2.13rem;
+      color: $projects-muted;
+    }
+
+    &__year {
+      flex: 0 0 auto;
+      font-size: 2.13rem;
+    }
+  }
+
+  // ---- ② PROJETS ----
+  &__item {
+    max-width: 181.3rem;
+    margin: 0 auto;
+    padding: 0 5.3rem 21.3rem;
+
+    &__head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.6rem;
+      margin-bottom: 3.2rem;
+      font-size: 1.73rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    &__type { color: $color-orange; }
+    &__stack { color: $projects-muted; }
+
+    &__media {
+      display: block;
+      background: #fff;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 4rem 8rem -4rem rgba($color-navy, 0.35);
+
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 2 / 1;
+        object-fit: cover;
+        transition: transform 1.2s $ease-out-expo;
+      }
+
+      &:hover img { transform: scale(1.02); }
+    }
+
+    &__info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5.3rem;
+      margin-top: 5.3rem;
+    }
+
+    &__text {
+      flex: 999 1 69.3rem;
+      min-width: 0;
+    }
+
+    &__title {
+      font-family: $font-display;
+      font-size: 8.53rem;
+      font-weight: 300;
+      line-height: 1;
+      color: $color-navy;
+      margin-bottom: 2.13rem;
     }
 
     &__description {
-      font-family: $font-sans;
-      font-size: 1.4rem;
-      font-weight: 300;
-      line-height: 1.7;
-      color: rgba($color-navy, 0.6);
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba($color-navy, 0.1);
+      max-width: 82.7rem;
+      font-size: 2.4rem;
+      line-height: 1.6;
+      color: $projects-muted;
     }
 
-    &__tech {
+    &__aside {
+      flex: 1 1 40rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      list-style: none;
-      padding: 0;
-      margin: 0 0 2.4rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2.67rem;
+    }
 
-      li {
-        font-family: $font-sans;
-        font-size: 1rem;
-        letter-spacing: 0.08em;
+    &__meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.13rem 3.2rem;
+      width: 100%;
+      margin: 0;
+      font-size: 2rem;
+
+      dt {
+        font-size: 1.6rem;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: $color-navy;
-        border: 1px solid rgba($color-navy, 0.2);
-        padding: 0.4rem 1rem;
-        border-radius: 2px;
-        transition: border-color 0.3s $ease-out-expo, color 0.3s $ease-out-expo;
+        color: $projects-muted;
+      }
 
-        &:hover {
-          border-color: $color-orange;
-          color: $color-orange;
-        }
+      dd {
+        margin: 0.53rem 0 0;
+        line-height: 1.5;
+        color: $color-navy;
       }
     }
 
     &__link {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      font-family: $font-sans;
-      font-size: 1.2rem;
-      letter-spacing: 0.1em;
+      gap: 1rem;
+      padding: 1.6rem 0;
+      font-size: 1.87rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: $color-navy;
       text-decoration: none;
-      border-bottom: 1px solid $color-navy;
-      padding-bottom: 0.2rem;
-      transition: color 0.3s $ease-out-expo, border-color 0.3s $ease-out-expo;
+      border-bottom: 1px solid currentColor;
+      transition: color 0.3s $ease-out-expo;
 
-      svg { transition: transform 0.3s $ease-out-expo; }
+      // Flèche identique au lien mail du popup contact
+      svg {
+        width: 2.13rem;
+        height: 2.13rem;
+        transition: transform 0.3s $ease-out-expo;
+      }
 
       &:hover {
         color: $color-orange;
-        border-color: $color-orange;
         svg { transform: translate(3px, -3px); }
       }
     }
   }
 
-  // ---- Compteur ----
-  &__counter {
-    position: fixed;
-    left: 6rem;
-    bottom: 5rem;
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    font-family: $font-sans;
-    z-index: 10;
-    pointer-events: none;
-    opacity: 0;
+  // Le CTA réutilise les classes .about__cta : typo et bordure de la maquette
+  .about__cta {
+    border-top: 1px solid $projects-line;
 
-    &__current {
-      font-size: 2.4rem;
-      font-weight: 300;
-      color: $color-navy;
-      font-family: $font-serif;
-    }
-
-    &__sep { font-size: 1.2rem; color: $color-brown; }
-    &__total { font-size: 1.2rem; color: $color-brown; }
+    &__title { font-family: $font-display; }
+    &__email,
+    &__link { font-family: $font-body; }
   }
 
-  // ---- Dots ----
-  &__dots {
-    position: fixed;
-    right: 6rem;
-    bottom: 5rem;
-    display: flex;
-    gap: 1rem;
-    z-index: 10;
-    opacity: 0;
-    align-items: center;
+  .footer {
+    font-family: $font-body;
   }
-
-  &__dot {
-    position: relative;
-    width: 0.8rem;
-    height: 2rem;
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: width 0.4s $ease-out-expo;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 50%;
-      height: 0.8rem;
-      transform: translateY(-50%);
-      border-radius: 0.4rem;
-      background: rgba($color-navy, 0.2);
-      transition: background 0.3s $ease-out-expo;
-    }
-
-    &--active {
-      width: 2.4rem;
-      &::before { background: $color-navy; }
-    }
-
-    &:hover:not(&--active)::before {
-      background: rgba($color-navy, 0.5);
-    }
-  }
-}
-
-// Transition Vue fade-up
-.fade-up-enter-active,
-.fade-up-leave-active {
-  transition: opacity 0.4s $ease-out-expo, transform 0.4s $ease-out-expo;
-}
-.fade-up-enter-from {
-  opacity: 0;
-  transform: translateY(16px);
-}
-.fade-up-leave-to {
-  opacity: 0;
-  transform: translateY(-16px);
 }
 
 @include media('<phone') {
   .projects {
-    position: relative;
-    inset: auto;
-    overflow: auto;
-    padding-top: 8rem;
-    min-height: 100vh;
-    touch-action: pan-y;
-    // Contient les z-index internes (10) pour qu'ils restent sous le menu
+    // Contient les z-index internes pour qu'ils restent sous le menu
     isolation: isolate;
     z-index: 0;
-  }
 
-  .projects__media {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    width: 100%;
-    padding: 0 2rem;
-    margin-bottom: 3rem;
-    outline: none;
+    &__hero {
+      padding: 14rem 3rem 10rem;
 
-    &__image {
-      opacity: 1 !important;
-      width: 100%;
-      height: auto;
-      max-height: 50vh;
-      object-fit: cover;
-      outline: 1px solid rgba($color-navy, 0.15);
-    }
-  }
+      &__top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4rem;
+      }
 
-  .projects__content {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    width: 100%;
-    padding: 0 3rem;
-    opacity: 1 !important;
-    pointer-events: auto;
-  }
+      &__tag { font-size: 2.2rem; margin-bottom: 3rem; }
+      &__title { font-size: 14rem; }
 
-  .projects__article {
-    position: relative;
-    opacity: 1 !important;
-    transform: none !important;
-    pointer-events: auto;
-
-    &__year {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    &__category {
-      font-size: 2.2rem;
-      margin-bottom: 2.4rem;
-    }
-
-    &__title {
-      font-size: 6.4rem;
-      margin-bottom: 3rem;
-    }
-
-    &__description {
-      font-size: 2.8rem;
-      line-height: 1.6;
-      margin-bottom: 3rem;
-      padding-bottom: 3rem;
-    }
-
-    &__tech {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.2rem;
-      margin-bottom: 4rem;
-
-      li {
-        font-size: 1.8rem;
-        padding: 1rem 0.4rem;
-        text-align: center;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      &__intro {
+        max-width: none;
+        font-size: 3rem;
       }
     }
 
-    &__link {
-      display: flex;
-      justify-content: center;
-      width: 90%;
-      margin: 0 auto;
-      gap: 1.2rem;
-      font-size: 2.6rem;
-      padding: 0 0 1rem;
+    &__list {
+      &__row {
+        display: grid;
+        grid-template-columns: 6rem 1fr auto;
+        padding: 4rem 0;
+        gap: 2rem;
+      }
 
-      svg {
-        width: 2.6rem;
-        height: 2.6rem;
+      &__number { font-size: 2.2rem; }
+      &__title { font-size: 5.6rem; }
+      &__summary { display: none; }
+      &__year { font-size: 2.4rem; }
+    }
+
+    &__item {
+      padding: 0 3rem 12rem;
+
+      &__head {
+        flex-direction: column;
+        gap: 1.4rem;
+        font-size: 2.2rem;
+        margin-bottom: 3rem;
+      }
+
+      &__info {
+        flex-direction: column;
+        gap: 5rem;
+        margin-top: 5rem;
+      }
+
+      &__title { font-size: 9rem; }
+
+      &__description {
+        font-size: 3rem;
+        line-height: 1.6;
+      }
+
+      &__text,
+      &__aside {
+        flex: none;
+        width: 100%;
+      }
+
+      &__meta {
+        gap: 4rem;
+
+        dt { font-size: 2rem; margin-bottom: 1rem; }
+        dd { font-size: 2.8rem; }
+      }
+
+      // Même mise en page que le lien mail de la section Contact
+      &__link {
+        display: flex;
+        justify-content: space-between;
+        align-self: stretch;
+        width: 100%;
+        gap: 1.2rem;
+        font-size: 3.4rem;
+        padding: 0 0 1.2rem;
+
+        svg {
+          width: 4rem;
+          height: 4rem;
+          flex-shrink: 0;
+        }
       }
     }
   }
-
-  .projects__counter {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    padding: 5rem 3rem 1rem;
-
-    &__current { font-size: 5.6rem; }
-    &__sep,
-    &__total { font-size: 2.4rem; }
-  }
-
-  .projects__dots {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    justify-content: center;
-    gap: 2rem;
-    padding: 3rem 2rem 6rem;
-    opacity: 1 !important;
-  }
-
-  .projects__dot {
-    width: 1.6rem;
-    height: 4rem;
-
-    &::before {
-      height: 1.6rem;
-      border-radius: 0.8rem;
-    }
-
-    &--active { width: 5rem; }
-  }
-
-  .projects__hint { display: none; }
 }

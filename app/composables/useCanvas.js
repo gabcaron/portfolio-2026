@@ -125,7 +125,8 @@ export function useCanvas() {
     if (template === 'detail') createDetail()
     else if (state.detail) destroyDetail()
 
-    if (template === 'collections' || template === 'projects') createCollections()
+    // La page Projects est désormais une page DOM scrollable (plus de WebGL)
+    if (template === 'collections') createCollections()
     else if (state.collections) destroyCollections()
 
     state.template = template

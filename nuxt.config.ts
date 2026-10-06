@@ -33,6 +33,10 @@ export default defineNuxtConfig({
         { name: 'twitter:creator', content: '@gabincaron' }
       ],
       link: [
+        // Typo des pages Projects / Case study
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500&family=Noto+Serif+Display:ital,wght@0,300;0,400;1,300;1,400&display=swap' },
         { rel: 'canonical', href: 'https://gabincaron.com' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },

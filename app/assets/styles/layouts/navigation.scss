@@ -249,7 +249,7 @@
     text-transform: uppercase;
     color: $color-navy;
     text-decoration: none;
-    opacity: 0.45;
+    opacity: 0.7;
     transition: opacity 0.3s $ease-out-expo;
 
     &:hover {
@@ -270,7 +270,7 @@
       font-size: 1.1rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: $color-brown;
+      color: rgba($color-navy, 0.6);
     }
 
     .contact-panel__availability {
@@ -293,6 +293,8 @@
       width: 0.5rem;
       height: 0.5rem;
       border-radius: 50%;
+      // Hérite de la couleur du statut (orange si dispo), comme dans le footer
+      color: inherit;
       background: currentColor;
       flex-shrink: 0;
     }

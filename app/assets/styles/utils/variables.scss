@@ -36,6 +36,10 @@ $color-orange-light: lighten($color-orange, 15%);
 $font-serif: 'Merriweather', serif;
 $font-sans:  'Inter', sans-serif;
 
+// Typo des pages Projects / Case study
+$font-display: 'Noto Serif Display', Georgia, serif;
+$font-body:    'Noto Sans', 'Helvetica Neue', sans-serif;
+
 // Utilitaires
 $border-radius: 8px;
 $shadow-soft: 0 4px 10px rgba(0,0,0,0.08);

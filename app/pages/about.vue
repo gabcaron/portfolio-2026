@@ -108,30 +108,9 @@
         </div>
       </section>
 
-      <!-- ⑤ CTA — en dur -->
-      <section class="about__cta" ref="ctaEl">
-        <div class="about__cta__inner">
-          <h2 class="about__cta__title">
-            Let's build<br>
-            <em>something great.</em>
-          </h2>
-          <a href="mailto:gabindevelops@gmail.com" class="about__cta__email">
-            gabindevelops@gmail.com
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M5 19L19 5M19 5H5M19 5V19" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </a>
-          <div class="about__cta__links">
-            <a href="https://github.com/gabcaron" target="_blank" class="about__cta__link">GitHub ↗</a>
-            <a href="https://linkedin.com/in/gab-caron/" target="_blank" class="about__cta__link">LinkedIn ↗</a>
-          </div>
-        </div>
-      </section>
+      <ContactCta />
 
-      <footer class="footer">
-        <span class="footer__copy">© {{ new Date().getFullYear() }} Gabin Caron — All rights reserved</span>
-        <NuxtLink to="/legal" class="footer__legal">Mentions légales / Legal Notice</NuxtLink>
-      </footer>
+      <Footer />
 
     </div>
   </div>
@@ -212,7 +191,6 @@ const bio2 = ref(null)
 const skillsSection = ref(null)
 const skillCats = ref([])
 const philosophyEl = ref(null)
-const ctaEl = ref(null)
 
 // --- Composables ---
 const emit = defineEmits(['page-ready'])
@@ -265,17 +243,6 @@ function animatePhilosophy() {
   })
 }
 
-function animateCta() {
-  observeSection(ctaEl.value, () => {
-    GSAP.fromTo(ctaEl.value.querySelector('.about__cta__title'), { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: 'expo.out' })
-    GSAP.fromTo(
-      [ctaEl.value.querySelector('.about__cta__email'), ctaEl.value.querySelector('.about__cta__links')],
-      { autoAlpha: 0, y: 20 },
-      { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.15, delay: 0.4 }
-    )
-  })
-}
-
 onMounted(() => {
   changeColors({ backgroundColor: '#F5F0E6', color: '#1A2A2F' })
   nextTick(() => {
@@ -292,7 +259,6 @@ onMounted(() => {
     animateIntro()
     animateSkills()
     animatePhilosophy()
-    animateCta()
     emit('page-ready', {
       scroll,
       update: () => update(wrapperEl.value),

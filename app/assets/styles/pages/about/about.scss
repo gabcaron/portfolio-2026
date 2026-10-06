@@ -365,7 +365,7 @@
       text-transform: uppercase;
       color: $color-navy;
       text-decoration: none;
-      opacity: 0.5;
+      opacity: 0.75;
       transition: opacity 0.3s $ease-out-expo;
 
       &:hover { opacity: 1; }
