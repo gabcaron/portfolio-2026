@@ -28,19 +28,16 @@ export default defineNuxtConfig({
         { name: 'author', content: 'Gabin Caron' },
         { name: 'robots', content: 'index, follow' },
         { property: 'og:site_name', content: 'Gabin Caron' },
-        { property: 'og:type', content: 'website' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:creator', content: '@gabincaron' }
+        { key: 'og:type', property: 'og:type', content: 'website' }
       ],
       link: [
         // Typo des pages Projects / Case study
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500&family=Noto+Serif+Display:ital,wght@0,300;0,400;1,300;1,400&display=swap' },
-        { rel: 'canonical', href: 'https://gabincaron.com' },
+        // Favicon boussole : SVG pour les navigateurs récents, .ico en secours
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
       ]
     }

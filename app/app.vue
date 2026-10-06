@@ -28,19 +28,9 @@ import NormalizeWheel from 'normalize-wheel'
 import { useCanvas } from '~/composables/useCanvas'
 import { useAssetsStore } from '~/stores/assets'
 
-const { data: layout } = await useFetch('/api/layout')
+// Clé "layout" : réutilisée par useSEO pour l'image de partage par défaut
+const { data: layout } = await useFetch('/api/layout', { key: 'layout' })
 const assetsStore = useAssetsStore()
-
-watch(() => layout.value, (data) => {
-  if (data?.meta?.data?.image?.url) {
-    useHead({
-      meta: [
-        { property: 'og:image', content: data.meta.data.image.url },
-        { name: 'twitter:image', content: data.meta.data.image.url }
-      ]
-    })
-  }
-}, { immediate: true })
 
 const isLoading = ref(true)
 const isMobile = ref(false)

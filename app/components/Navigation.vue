@@ -140,7 +140,7 @@ function resolveLink(link) {
   if (!link) return '/'
   if (link.type === 'collections') return '/projects'
   if (link.type === 'about') return '/about'
-  if (link.type === 'product') return `/detail/${link.slug}`
+  if (link.type === 'product') return `/projects/${link.slug}`
   return '/'
 }
 

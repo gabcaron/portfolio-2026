@@ -1,13 +1,6 @@
 import Prismic from '@prismicio/client'
 import { initApi } from '../utils/prismic'
-
-// "Terre d'Opale Habitat" -> "terredopalehabitat" : sans accent, sans espace, lettres uniquement
-const slugify = (title = '') =>
-  title
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-zA-Z]/g, '')
-    .toLowerCase()
+import { slugify } from '../utils/slugify'
 
 export default defineEventHandler(async (event) => {
   const api = await initApi(event)

@@ -2,7 +2,7 @@
   <div class="home" data-background="#F5F0E6" data-color="#1A2A2F">
     <div class="home__wrapper">
       <div class="home__titles">
-        <div ref="titleEl" class="home__titles__title">Gabin</div>
+        <h1 ref="titleEl" class="home__titles__title">Gabin</h1>
         <div ref="labelEl" class="home__titles__label">Web Developer & Explorer</div>
         <NuxtLink to="/projects" class="home__titles__link">
           See my work

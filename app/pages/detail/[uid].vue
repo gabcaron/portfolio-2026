@@ -74,7 +74,7 @@
         </section>
 
         <!-- ⑥ NEXT PROJECT -->
-        <NuxtLink v-if="next" :to="`/detail/${next.uid}`" class="case__next">
+        <NuxtLink v-if="next" :to="`/projects/${next.uid}`" class="case__next">
           <span class="case__next__label">Next project</span>
           <span class="case__next__row">
             <span class="case__next__title">{{ next.title }} <em>{{ next.year }}</em></span>
@@ -100,8 +100,12 @@ import { useScroll } from '~/composables/useScroll'
 import { useColors } from '~/composables/useColors'
 import { getProjectExtra, splitTitle } from '~/utils/projectsExtra'
 
+// URL publique : /projects/terre-dopale-habitat
 // Remonte la page quand on passe d'un case study à l'autre
-definePageMeta({ key: route => route.fullPath })
+definePageMeta({
+  path: '/projects/:uid',
+  key: route => route.fullPath
+})
 
 const route = useRoute()
 const { data } = await useFetch('/api/projects')
@@ -125,7 +129,7 @@ useSEO({
   title: `${project.value?.title || 'Case study'} - Gabin Caron | Web Developer`,
   description: project.value?.description || '',
   image: project.value?.image || '',
-  path: `/detail/${route.params.uid}`
+  path: `/projects/${route.params.uid}`
 })
 
 // --- Scroll ---

@@ -13,6 +13,7 @@
     overflow: hidden;
 
     &__line {
+      display: block; // <span> dans le <h1> : se comporte comme l'ancien <div>
       overflow: hidden;
       line-height: 0.92;
 

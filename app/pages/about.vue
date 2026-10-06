@@ -4,12 +4,14 @@
 
       <!-- ① HERO — "About Me." en dur, lignes en dessous depuis Prismic -->
       <section class="about__hero">
-        <div class="about__hero__line" ref="heroLine1">
-          <span>About</span>
-        </div>
-        <div class="about__hero__line" ref="heroLine2">
-          <span>Me.</span>
-        </div>
+        <h1 class="about__hero__heading">
+          <span class="about__hero__line" ref="heroLine1">
+            <span>About</span>
+          </span>
+          <span class="about__hero__line" ref="heroLine2">
+            <span>Me.</span>
+          </span>
+        </h1>
         <p class="about__hero__sub" ref="heroSub">
           <template v-for="(line, i) in heroLines" :key="i">
             {{ line }}<br v-if="i < heroLines.length - 1">

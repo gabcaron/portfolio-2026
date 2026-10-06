@@ -45,7 +45,7 @@
         </header>
 
         <div class="projects__item__body">
-          <NuxtLink :to="`/detail/${project.uid}`" class="projects__item__media">
+          <NuxtLink :to="`/projects/${project.uid}`" class="projects__item__media">
             <img :src="project.image" :alt="project.title" class="loaded">
           </NuxtLink>
 
@@ -70,7 +70,7 @@
                   <dd>{{ project.extra.focus }}</dd>
                 </div>
               </dl>
-              <NuxtLink :to="`/detail/${project.uid}`" class="projects__item__link">
+              <NuxtLink :to="`/projects/${project.uid}`" class="projects__item__link">
                 Read case study
 <svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M2.5 17.5L17.5 2.5M17.5 2.5H2.5M17.5 2.5V17.5" stroke="currentColor" stroke-width="1.5"/>

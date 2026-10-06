@@ -363,7 +363,9 @@ const lastUpdated = computed(() => {
 useHead({
   title: computed(() => lang.value === 'fr'
     ? 'Mentions légales - Gabin Caron | Web Developer'
-    : 'Legal Notice - Gabin Caron | Web Developer')
+    : 'Legal Notice - Gabin Caron | Web Developer'),
+  // La langue de la page suit le bouton EN | FR
+  htmlAttrs: { lang: computed(() => lang.value) }
 })
 
 const wrapperEl = ref(null)
