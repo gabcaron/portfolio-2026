@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <Preloader
-      v-if="isLoading"
+      v-if="showPreloader"
       :title="layout?.preloader?.data?.title"
       @completed="onPreloaded"
+      @hidden="showPreloader = false"
     />
 
     <Navigation v-if="layout" :navigation="layout.navigation" :meta="layout.meta" />
@@ -33,6 +34,8 @@ const { data: layout } = await useFetch('/api/layout', { key: 'layout' })
 const assetsStore = useAssetsStore()
 
 const isLoading = ref(true)
+// Reste monté jusqu'à la fin de son animation de sortie
+const showPreloader = ref(true)
 const isMobile = ref(false)
 const route = useRoute()
 

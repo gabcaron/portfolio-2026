@@ -16,6 +16,9 @@ const DEFAULTS = {
 
 const clean = value => (typeof value === 'string' ? value.trim() : value)
 
+// N'accepte que les liens http(s) : bloque "javascript:…" ou toute autre URL exotique
+const safeUrl = url => (typeof url === 'string' && /^https?:\/\//i.test(url.trim()) ? url.trim() : null)
+
 // "Terre d'Opale Habitat" -> { start: "Terre d'Opale", last: "Habitat" }
 function splitTitle(title = '') {
   const words = title.trim().split(' ')
@@ -46,7 +49,7 @@ export default defineEventHandler(async (event) => {
         year: data.year,
         description: data.description,
         tech: data.tags?.map(t => t.tag).filter(Boolean) || [],
-        link: data.link,
+        link: safeUrl(data.link),
         image: data.image?.url,
         extra
       }

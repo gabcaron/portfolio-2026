@@ -123,6 +123,7 @@ import GSAP from 'gsap'
 import { useColors } from '~/composables/useColors'
 import { usePageScroll } from '~/composables/usePageScroll'
 import { useReveal } from '~/composables/useReveal'
+import { safeHtml } from '~/utils/safeHtml'
 
 // --- Fetch Prismic ---
 const { data } = await useFetch('/api/about')
@@ -165,7 +166,7 @@ const bioParagraphs = computed(() => meSlice.value?.items?.map(i => i.paragraph)
 
 // Skills
 const skillsLabel = computed(() => skillsSlice.value?.primary?.label)
-const skillsTitle = computed(() => skillsSlice.value?.primary?.title)
+const skillsTitle = computed(() => safeHtml(skillsSlice.value?.primary?.title))
 const skillCategories = computed(() =>
   skillsLists.value.map(s => ({
     name: s.primary?.category,
@@ -175,7 +176,7 @@ const skillCategories = computed(() =>
 
 // Philosophy
 const philosophyLabel = computed(() => philosophySlice.value?.primary?.label)
-const philosophyQuote = computed(() => philosophySlice.value?.primary?.quote)
+const philosophyQuote = computed(() => safeHtml(philosophySlice.value?.primary?.quote))
 const pillars = computed(() => philosophySlice.value?.items || [])
 
 // --- Refs DOM ---
@@ -220,7 +221,7 @@ function animateIntro() {
     GSAP.fromTo(photoEl.value.querySelector('.about__intro__media__inner'), { scale: 1.1 }, { scale: 1, duration: 1.4, ease: 'expo.out' })
   })
   observeOnce(bio1.value, () => {
-    GSAP.fromTo([bioTag.value, bio1.value, bio2.value], { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 })
+    GSAP.fromTo([bioTag.value, bio1.value, bio2.value].filter(Boolean), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 })
   })
 }
 

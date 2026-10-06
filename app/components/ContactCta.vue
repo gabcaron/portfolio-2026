@@ -13,8 +13,8 @@
         </svg>
       </a>
       <div ref="linksEl" class="about__cta__links">
-        <a href="https://github.com/gabcaron" target="_blank" class="about__cta__link">GitHub ↗</a>
-        <a href="https://linkedin.com/in/gab-caron/" target="_blank" class="about__cta__link">LinkedIn ↗</a>
+        <a href="https://github.com/gabcaron" target="_blank" rel="noopener noreferrer" class="about__cta__link">GitHub ↗</a>
+        <a href="https://linkedin.com/in/gab-caron/" target="_blank" rel="noopener noreferrer" class="about__cta__link">LinkedIn ↗</a>
       </div>
     </div>
   </section>

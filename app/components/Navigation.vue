@@ -90,7 +90,7 @@
           Let's build<br><em>something</em><br>great.
         </h2>
         <p class="contact-panel__desc">
-          Open to freelance projects, creative collaborations, and exciting new roles.
+          Open to new roles and creative collaborations.
         </p>
         <a href="mailto:gabindevelops@gmail.com" class="contact-panel__email">
           gabindevelops@gmail.com
@@ -99,8 +99,8 @@
           </svg>
         </a>
         <div class="contact-panel__socials">
-          <a href="https://github.com/gabcaron" target="_blank" class="contact-panel__social">GitHub ↗</a>
-          <a href="https://linkedin.com/in/gab-caron/" target="_blank" class="contact-panel__social">LinkedIn ↗</a>
+          <a href="https://github.com/gabcaron" target="_blank" rel="noopener noreferrer" class="contact-panel__social">GitHub ↗</a>
+          <a href="https://linkedin.com/in/gab-caron/" target="_blank" rel="noopener noreferrer" class="contact-panel__social">LinkedIn ↗</a>
         </div>
         <div class="contact-panel__footer">
           <span>Based in {{ props.navigation?.data?.localisation }}</span>

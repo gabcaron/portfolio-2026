@@ -35,7 +35,7 @@
           <div>
             <dt>Live site</dt>
             <dd>
-              <a v-if="project.link" :href="project.link" target="_blank" rel="noopener" class="case__meta__link">
+              <a v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer" class="case__meta__link">
                 Visit site
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M2.5 17.5L17.5 2.5M17.5 2.5H2.5M17.5 2.5V17.5" stroke="currentColor" stroke-width="1.5"/>

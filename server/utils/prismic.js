@@ -4,9 +4,11 @@ export const initApi = (event) => {
     const config = useRuntimeConfig()
 
     if (!config.prismicEndpoint || !/^https?:\/\//.test(config.prismicEndpoint)) {
+        // Détail technique uniquement dans les logs serveur, jamais envoyé au visiteur
+        console.error('[Prismic] PRISMIC_ENDPOINT manquant ou invalide : vérifiez le fichier .env')
         throw createError({
-            statusCode: 500,
-            statusMessage: 'PRISMIC_ENDPOINT manquant ou invalide : ajoutez-le dans le fichier .env (ex. https://votre-repo.cdn.prismic.io/api/v2)'
+            statusCode: 503,
+            statusMessage: 'Service Unavailable'
         })
     }
 

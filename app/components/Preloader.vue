@@ -16,6 +16,7 @@
 </template>
 
 <script setup>
+import { safeHtml } from '~/utils/safeHtml'
 import GSAP from 'gsap'
 import { Texture } from 'ogl'
 import { useAssetsStore } from '~/stores/assets'
@@ -25,7 +26,8 @@ const props = defineProps({
   title: { type: String, default: '' }
 })
 
-const emit = defineEmits(['completed'])
+// completed : contenu prêt (lance le WebGL) — hidden : panneau sorti de l'écran (démontage)
+const emit = defineEmits(['completed', 'hidden'])
 
 const preloaderEl = ref(null)
 const titleEl = ref(null)
@@ -42,7 +44,7 @@ let loadedCount = 0
 let totalAssets = 0
 let fakeProgressTween = null
 
-const formattedTitle = computed(() => (props.title || '').replace(/\n/g, '<br>'))
+const formattedTitle = computed(() => safeHtml(props.title).replace(/\n/g, '<br>'))
 
 // --- Entrée : anime le texte dès le montage ---
 function animateIn() {
@@ -151,16 +153,20 @@ function onLoaded() {
       onComplete: () => {
         assetsStore.markReady()
         emit('completed')
-        setTimeout(animateOut, 300)
+        animateOut()
       }
     })
   }, remaining)
 }
 
 function animateOut() {
-  const tl = GSAP.timeline({ delay: 0.3 })
+  const tl = GSAP.timeline({
+    delay: 0.6,
+    // Le parent ne retire le preloader qu'une fois l'animation finie
+    onComplete: () => emit('hidden')
+  })
 
-  tl.to([titleEl.value, numberTextEl.value, barEl.value], {
+  tl.to([titleEl.value, numberTextEl.value, barEl.value].filter(Boolean), {
     autoAlpha: 0,
     duration: 0.3,
     ease: 'power2.in'

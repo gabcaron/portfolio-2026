@@ -9,7 +9,7 @@ $color-green:      #3D5C40; // accents, titres
 $color-navy:       #1A2A2F; // texte, contrastes
 $color-brown:      #CBBF9D; // détails papier
 $color-orange:     #D4521A; // CTA, hover
-$color-navy-light: lighten($color-navy, 20%);
+$color-navy-light: #3E6571; // = lighten($color-navy, 20%), écrit en dur (lighten() est déprécié)
 
 // === Typographies (une seule paire pour tout le site) ===
 $font-serif: 'Noto Serif Display', Georgia, serif;

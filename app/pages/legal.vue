@@ -44,7 +44,7 @@
           <h2 class="legal__section__title">1. Informations générales</h2>
           <p>
             <strong>Gabin Caron</strong><br>
-            Développeur web freelance<br>
+            Développeur web<br>
             France<br>
             Email : <a href="mailto:gabindevelops@gmail.com">gabindevelops@gmail.com</a>
           </p>
@@ -54,9 +54,14 @@
         <section class="legal__section">
           <h2 class="legal__section__title">2. Hébergement</h2>
           <p>
-            Maintenance et hébergement : <a href="https://vercel.com" target="_blank">vercel.com</a><br>
-            Nom de domaine : <a href="https://www.gabincaron.com" target="_blank">gabincaron.com</a><br>
-            Adresse du site : <a href="https://www.gabincaron.com" target="_blank">https://www.gabincaron.com</a>
+            Le site est hébergé par <strong>Vercel, Inc.</strong><br>
+            340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis<br>
+            Contact : <a href="mailto:support@vercel.com">support@vercel.com</a> —
+            <a href="https://vercel.com/legal" target="_blank" rel="noopener noreferrer">vercel.com/legal</a>
+          </p>
+          <p>
+            Nom de domaine : gabincaron.com<br>
+            Adresse du site : <a href="https://www.gabincaron.com">https://www.gabincaron.com</a>
           </p>
         </section>
 
@@ -80,12 +85,12 @@
           <p>Certaines photographies utilisées sur ce site sont issues des plateformes suivantes :</p>
           <ul>
             <li>
-              <a href="https://unsplash.com" target="_blank">Unsplash</a> —
+              <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a> —
               images sous licence Unsplash (utilisation gratuite autorisée)
             </li>
             <li>
               Prismic Media Library — images personnelles hébergées via
-              <a href="https://prismic.io" target="_blank">Prismic</a>
+              <a href="https://prismic.io" target="_blank" rel="noopener noreferrer">Prismic</a>
             </li>
           </ul>
           <p>
@@ -97,8 +102,9 @@
         <section class="legal__section">
           <h2 class="legal__section__title">5. Cookies</h2>
           <p>
-            Ce site n'utilise aucun cookie de traçage, de mesure d'audience ou publicitaire.
-            Aucune donnée de navigation n'est collectée ni transmise à des tiers.
+            Ce site n'utilise aucun cookie de traçage, de mesure d'audience ou publicitaire,
+            et n'affiche donc pas de bandeau de consentement. Les seules données de navigation
+            traitées sont les journaux techniques de l'hébergeur, décrits à la section 6.
           </p>
           <p>
             Des cookies techniques strictement nécessaires au bon fonctionnement du site
@@ -117,9 +123,36 @@
             Ce site se conforme au Règlement Général sur la Protection des Données n°2016/679 (RGPD)
             et à la Loi n°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés.
           </p>
+          <p>Responsable du traitement : <strong>Gabin Caron</strong> — <a href="mailto:gabindevelops@gmail.com">gabindevelops@gmail.com</a></p>
+          <p><strong>Données traitées</strong></p>
+          <ul>
+            <li>
+              <strong>Journaux techniques</strong> (adresse IP, date et heure, page demandée, navigateur) :
+              enregistrés automatiquement par l'hébergeur Vercel pour assurer le fonctionnement et la
+              sécurité du site. Base légale : intérêt légitime. Durée : selon la politique de
+              conservation de Vercel, limitée à ce qui est nécessaire à ces finalités.
+            </li>
+            <li>
+              <strong>Emails</strong> (nom, adresse email, contenu du message) : utilisés uniquement
+              pour répondre à votre demande. Base légale : intérêt légitime à répondre aux messages reçus.
+              Durée : 3 ans après le dernier échange, puis suppression.
+            </li>
+            <li>
+              <strong>Chargement des images</strong> : les images du site sont servies par le CDN de
+              Prismic, qui reçoit à cette occasion l'adresse IP de votre navigateur.
+            </li>
+          </ul>
           <p>
-            Si vous nous contactez par email, les informations transmises sont utilisées uniquement
-            pour répondre à votre demande et ne sont pas conservées au-delà du nécessaire.
+            Aucune donnée n'est vendue, ni utilisée à des fins publicitaires ou de profilage.
+            Les polices de caractères sont hébergées avec le site : aucune donnée n'est transmise
+            à Google Fonts.
+          </p>
+          <p>
+            <strong>Transfert hors de l'Union européenne</strong> : Vercel étant établi aux États-Unis,
+            les journaux techniques peuvent y être traités. Ce transfert est encadré par le
+            Data Privacy Framework UE–États-Unis et par les clauses contractuelles types de la
+            Commission européenne (voir la
+            <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">politique de confidentialité de Vercel</a>).
           </p>
           <p>Conformément à la réglementation en vigueur, vous disposez des droits suivants :</p>
           <ul>
@@ -135,16 +168,17 @@
           </p>
           <p>
             Vous pouvez également adresser une réclamation à la
-            <a href="https://www.cnil.fr" target="_blank">CNIL</a>.
+            <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">CNIL</a>.
           </p>
         </section>
 
         <section class="legal__section">
           <h2 class="legal__section__title">7. Contenu embarqué</h2>
           <p>
-            Ce site peut inclure des contenus intégrés depuis des services tiers (polices, icônes).
-            Ces services peuvent collecter des données ou utiliser des cookies selon leurs propres
-            politiques de confidentialité.
+            Ce site n'intègre aucun contenu tiers (vidéo, réseau social, carte, etc.).
+            Seules les images sont chargées depuis le CDN de
+            <a href="https://prismic.io/legal/privacy" target="_blank" rel="noopener noreferrer">Prismic</a>,
+            le service qui gère le contenu du site.
           </p>
         </section>
 
@@ -195,7 +229,7 @@
           <h2 class="legal__section__title">1. Publisher</h2>
           <p>
             <strong>Gabin Caron</strong><br>
-            Freelance Web Developer<br>
+            Web Developer<br>
             France<br>
             Email: <a href="mailto:gabindevelops@gmail.com">gabindevelops@gmail.com</a>
           </p>
@@ -205,9 +239,14 @@
         <section class="legal__section">
           <h2 class="legal__section__title">2. Hosting</h2>
           <p>
-            Maintenance and hosting: <a href="https://vercel.com" target="_blank">vercel.com</a><br>
-            Domain name: <a href="https://www.gabincaron.com" target="_blank">gabincaron.com</a><br>
-            Website address: <a href="https://www.gabincaron.com" target="_blank">https://www.gabincaron.com</a>
+            This website is hosted by <strong>Vercel, Inc.</strong><br>
+            340 S Lemon Ave #4133, Walnut, CA 91789, USA<br>
+            Contact: <a href="mailto:support@vercel.com">support@vercel.com</a> —
+            <a href="https://vercel.com/legal" target="_blank" rel="noopener noreferrer">vercel.com/legal</a>
+          </p>
+          <p>
+            Domain name: gabincaron.com<br>
+            Website address: <a href="https://www.gabincaron.com">https://www.gabincaron.com</a>
           </p>
         </section>
 
@@ -230,12 +269,12 @@
           <p>Some photographs used on this website come from the following platforms:</p>
           <ul>
             <li>
-              <a href="https://unsplash.com" target="_blank">Unsplash</a> —
+              <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a> —
               images under the Unsplash License (free use permitted)
             </li>
             <li>
               Prismic Media Library — personal images hosted via
-              <a href="https://prismic.io" target="_blank">Prismic</a>
+              <a href="https://prismic.io" target="_blank" rel="noopener noreferrer">Prismic</a>
             </li>
           </ul>
           <p>
@@ -247,8 +286,9 @@
         <section class="legal__section">
           <h2 class="legal__section__title">5. Cookies</h2>
           <p>
-            This website does not use any tracking, analytics or advertising cookies.
-            No browsing data is collected or transmitted to third parties.
+            This website does not use any tracking, analytics or advertising cookies,
+            so no consent banner is displayed. The only browsing data processed are the
+            hosting provider's technical logs, described in section 6.
           </p>
           <p>
             Strictly necessary technical cookies may be set by your browser for the proper
@@ -267,9 +307,35 @@
             This website complies with the General Data Protection Regulation (GDPR — EU 2016/679)
             and the French Data Protection Act of January 6, 1978.
           </p>
+          <p>Data controller: <strong>Gabin Caron</strong> — <a href="mailto:gabindevelops@gmail.com">gabindevelops@gmail.com</a></p>
+          <p><strong>Data processed</strong></p>
+          <ul>
+            <li>
+              <strong>Technical logs</strong> (IP address, date and time, requested page, browser):
+              automatically recorded by the hosting provider Vercel to keep the website running
+              and secure. Legal basis: legitimate interest. Retention: according to Vercel's
+              retention policy, limited to what these purposes require.
+            </li>
+            <li>
+              <strong>Emails</strong> (name, email address, message content): used solely to
+              respond to your request. Legal basis: legitimate interest in replying to messages
+              received. Retention: 3 years after the last exchange, then deleted.
+            </li>
+            <li>
+              <strong>Image loading</strong>: images are served by Prismic's CDN, which receives
+              your browser's IP address when loading them.
+            </li>
+          </ul>
           <p>
-            If you contact us by email, the information provided (name, email address, message)
-            is used solely to respond to your request and is not retained beyond what is necessary.
+            No data is sold, or used for advertising or profiling purposes. Fonts are hosted
+            with the website: no data is sent to Google Fonts.
+          </p>
+          <p>
+            <strong>Transfers outside the European Union</strong>: as Vercel is based in the
+            United States, technical logs may be processed there. This transfer is covered by
+            the EU–US Data Privacy Framework and the European Commission's Standard Contractual
+            Clauses (see
+            <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel's privacy policy</a>).
           </p>
           <p>In accordance with applicable regulations, you have the following rights:</p>
           <ul>
@@ -285,7 +351,7 @@
           </p>
           <p>
             You also have the right to lodge a complaint with the
-            <a href="https://www.cnil.fr/en" target="_blank">CNIL</a>
+            <a href="https://www.cnil.fr/en" target="_blank" rel="noopener noreferrer">CNIL</a>
             (French Data Protection Authority).
           </p>
         </section>
@@ -293,9 +359,10 @@
         <section class="legal__section">
           <h2 class="legal__section__title">7. Embedded Content</h2>
           <p>
-            This website may include content embedded from third-party services (fonts, icons).
-            These services may collect data or use cookies in accordance with their own
-            privacy policies.
+            This website does not embed any third-party content (video, social media, maps, etc.).
+            Only images are loaded from the CDN of
+            <a href="https://prismic.io/legal/privacy" target="_blank" rel="noopener noreferrer">Prismic</a>,
+            the service that manages the website's content.
           </p>
         </section>
 
@@ -351,7 +418,7 @@ const year = new Date().getFullYear()
 const lang = ref('en') // anglais par défaut
 
 // Date de dernière modification réelle des mentions : à mettre à jour à la main
-const LAST_UPDATED = new Date('2026-10-05')
+const LAST_UPDATED = new Date('2026-10-06')
 
 const lastUpdated = computed(() => {
   return LAST_UPDATED.toLocaleDateString(lang.value === 'fr' ? 'fr-FR' : 'en-GB', {
