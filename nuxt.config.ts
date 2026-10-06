@@ -81,9 +81,11 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'en' },
       meta: [
         { name: 'author', content: 'Gabin Caron' },
-        { name: 'robots', content: 'index, follow' },
+        { key: 'robots', name: 'robots', content: 'index, follow' },
         { property: 'og:site_name', content: 'Gabin Caron' },
-        { key: 'og:type', property: 'og:type', content: 'website' }
+        { key: 'og:type', property: 'og:type', content: 'website' },
+        // Aperçu en grande image quand le lien est partagé sur X (reprend les balises Open Graph)
+        { key: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' }
       ],
       link: [
         // Précharge les 2 polices principales (hébergées dans public/fonts)

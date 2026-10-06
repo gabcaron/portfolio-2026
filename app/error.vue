@@ -159,6 +159,8 @@ const board = computed(() => {
 })
 
 useHead({
+  // Une page d'erreur ne doit jamais être indexée par les moteurs de recherche
+  meta: [{ key: 'robots', name: 'robots', content: 'noindex, nofollow' }],
   title: computed(() => `${code.value} — ${props.error?.statusMessage || board.value.sub} | Gabin Caron`)
 })
 

@@ -33,9 +33,32 @@
 
 <script setup>
 useSEO({
-  title: 'Gabin Caron | Web Developer',
+  title: 'Gabin Caron | Web Developer crafting immersive websites',
   description: 'French web developer crafting immersive digital experiences at the intersection of code & design. WebGL, Vue.js, Nuxt, GSAP.',
   path: '/'
+})
+
+// Données structurées (schema.org) : aident Google à afficher une fiche sur "Gabin Caron"
+useHead({
+  script: [{
+    key: 'ld-person',
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Gabin Caron',
+      url: 'https://www.gabincaron.com',
+      jobTitle: 'Web Developer',
+      description: 'French web developer crafting immersive digital experiences at the intersection of code & design.',
+      address: { '@type': 'PostalAddress', addressCountry: 'FR' },
+      email: 'mailto:gabindevelops@gmail.com',
+      knowsAbout: ['Web development', 'Nuxt', 'Vue.js', 'WebGL', 'GSAP', 'UI design'],
+      sameAs: [
+        'https://github.com/gabcaron',
+        'https://linkedin.com/in/gab-caron/'
+      ]
+    })
+  }]
 })
 
 const { data } = await useFetch('/api/home')
