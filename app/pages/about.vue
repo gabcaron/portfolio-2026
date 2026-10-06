@@ -120,20 +120,17 @@
 
 <script setup>
 import GSAP from 'gsap'
-import { useScroll } from '~/composables/useScroll'
 import { useColors } from '~/composables/useColors'
+import { usePageScroll } from '~/composables/usePageScroll'
+import { useReveal } from '~/composables/useReveal'
 
 // --- Fetch Prismic ---
 const { data } = await useFetch('/api/about')
 const about = computed(() => data.value?.about)
 
-const { data: layoutData } = await useFetch('/api/layout')
-const ogImage = computed(() => layoutData.value?.meta?.data?.image?.url || '')
-
 useSEO({
   title: 'About - Gabin Caron | Web Developer',
   description: 'French web developer based in France, passionate about crafting immersive web experiences. Vue.js, Nuxt, WebGL, GSAP.',
-  image: ogImage.value,
   path: '/about'
 })
 
@@ -196,9 +193,14 @@ const philosophyEl = ref(null)
 
 // --- Composables ---
 const emit = defineEmits(['page-ready'])
-const { scroll, onWheel, onTouchStart, onTouchMove, onTouchEnd, onResize, update, reset } = useScroll()
-let resizeObserver = null
 const { change: changeColors } = useColors()
+const { observeOnce } = useReveal()
+usePageScroll(wrapperEl, emit, () => {
+  animateHero()
+  animateIntro()
+  animateSkills()
+  animatePhilosophy()
+})
 
 // --- Animations (inchangées) ---
 function animateHero() {
@@ -212,33 +214,24 @@ function animateHero() {
     .to(heroSub.value, { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
 }
 
-function observeSection(el, animation) {
-  if (!el) return
-  const observer = new IntersectionObserver(
-    entries => { entries.forEach(e => { if (e.isIntersecting) { animation(); observer.unobserve(el) } }) },
-    { threshold: 0.15 }
-  )
-  observer.observe(el)
-}
-
 function animateIntro() {
-  observeSection(photoEl.value, () => {
+  observeOnce(photoEl.value, () => {
     GSAP.fromTo(photoEl.value, { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, duration: 1, ease: 'expo.out' })
     GSAP.fromTo(photoEl.value.querySelector('.about__intro__media__inner'), { scale: 1.1 }, { scale: 1, duration: 1.4, ease: 'expo.out' })
   })
-  observeSection(bio1.value, () => {
+  observeOnce(bio1.value, () => {
     GSAP.fromTo([bioTag.value, bio1.value, bio2.value], { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 })
   })
 }
 
 function animateSkills() {
-  observeSection(skillsSection.value, () => {
+  observeOnce(skillsSection.value, () => {
     GSAP.fromTo(skillCats.value, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1 })
   })
 }
 
 function animatePhilosophy() {
-  observeSection(philosophyEl.value, () => {
+  observeOnce(philosophyEl.value, () => {
     const els = philosophyEl.value.querySelectorAll('.about__philosophy__pillar')
     GSAP.fromTo(philosophyEl.value.querySelector('.about__philosophy__quote'), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1, ease: 'power3.out' })
     GSAP.fromTo(els, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.12, delay: 0.3 })
@@ -247,34 +240,5 @@ function animatePhilosophy() {
 
 onMounted(() => {
   changeColors({ backgroundColor: '#F5F0E6', color: '#1A2A2F' })
-  nextTick(() => {
-    onResize(wrapperEl.value)
-
-    // Recalcule la limite de scroll quand la hauteur change (images, polices, responsive)
-    resizeObserver = new ResizeObserver(() => onResize(wrapperEl.value))
-    resizeObserver.observe(wrapperEl.value)
-
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: true })
-    window.addEventListener('touchend', onTouchEnd, { passive: true })
-    animateHero()
-    animateIntro()
-    animateSkills()
-    animatePhilosophy()
-    emit('page-ready', {
-      scroll,
-      update: () => update(wrapperEl.value),
-      onWheel,
-      onResize: () => onResize(wrapperEl.value)
-    })
-  })
-})
-
-onUnmounted(() => {
-  resizeObserver?.disconnect()
-  window.removeEventListener('touchstart', onTouchStart)
-  window.removeEventListener('touchmove', onTouchMove)
-  window.removeEventListener('touchend', onTouchEnd)
-  reset()
 })
 </script>

@@ -90,12 +90,7 @@ function loadTexture(src) {
     image.onload = () => {
       const glContext = gl.value
       if (glContext) {
-        const texture = new Texture(glContext, { image })
-        assetsStore.setTexture(src, texture)
-      } else {
-        // Fallback : stocke l'image brute si pas de contexte GL
-        // Le Canvas créera les textures lui-même plus tard
-        assetsStore.setImage(src, image)
+        assetsStore.setTexture(src, new Texture(glContext, { image }))
       }
       loadedCount++
       resolve()
@@ -116,29 +111,13 @@ async function loadAssets() {
     .map(el => el.dataset.src)
     .filter(Boolean)
 
-  // 2. Images de toutes les autres pages via API
+  // 2. Galerie de l'accueil (seule page en WebGL), même si on arrive sur une autre page
   let apiSources = []
   try {
-    const [homeData, projectsData] = await Promise.all([
-      $fetch('/api/home').catch(() => null),
-      $fetch('/api/projects').catch(() => null)
-    ])
-
-    if (homeData?.home?.data?.gallery) {
-      apiSources.push(
-        ...homeData.home.data.gallery
-          .map(m => m.image?.url)
-          .filter(Boolean)
-      )
-    }
-
-    if (projectsData?.projects) {
-      apiSources.push(
-        ...projectsData.projects
-          .map(p => p.image)
-          .filter(Boolean)
-      )
-    }
+    const homeData = await $fetch('/api/home')
+    apiSources = (homeData?.home?.data?.gallery || [])
+      .map(m => m.image?.url)
+      .filter(Boolean)
   } catch (e) {
     console.warn('[Preloader] Erreur fetch API:', e)
   }

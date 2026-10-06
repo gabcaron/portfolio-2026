@@ -26,23 +26,6 @@
   transform-origin: right center;
 }
 
-%link {
-  @extend %link__wrapper;
-
-  display: inline-block;
-
-  &:after {
-    @extend %link__line;
-    @extend %link__line--visible;
-  }
-
-  &:hover {
-    &:after {
-      @extend %link__line--hidden;
-    }
-  }
-}
-
 %link--hidden {
   @extend %link__wrapper;
 

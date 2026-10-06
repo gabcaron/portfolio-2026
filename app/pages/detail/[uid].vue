@@ -96,9 +96,8 @@
 
 <script setup>
 import GSAP from 'gsap'
-import { useScroll } from '~/composables/useScroll'
 import { useColors } from '~/composables/useColors'
-import { getProjectExtra, splitTitle } from '~/utils/projectsExtra'
+import { usePageScroll } from '~/composables/usePageScroll'
 
 // URL publique : /projects/terre-dopale-habitat
 // Remonte la page quand on passe d'un case study à l'autre
@@ -110,12 +109,7 @@ definePageMeta({
 const route = useRoute()
 const { data } = await useFetch('/api/projects')
 
-const projects = computed(() =>
-  (data.value?.projects || []).map(p => ({
-    ...p,
-    extra: { ...getProjectExtra(p), titleSplit: splitTitle(p.title) }
-  }))
-)
+const projects = computed(() => data.value?.projects || [])
 const index = computed(() => projects.value.findIndex(p => p.uid === route.params.uid))
 const project = computed(() => projects.value[index.value] || null)
 const number = computed(() => String(index.value + 1).padStart(2, '0'))
@@ -135,42 +129,16 @@ useSEO({
 // --- Scroll ---
 const wrapperEl = ref(null)
 const emit = defineEmits(['page-ready'])
-const { scroll, onWheel, onTouchStart, onTouchMove, onTouchEnd, onResize, update, reset } = useScroll()
 const { change: changeColors } = useColors()
-let resizeObserver = null
+
+usePageScroll(wrapperEl, emit, () => {
+  GSAP.fromTo('.case__hero > *, .case__meta',
+    { autoAlpha: 0, y: 30 },
+    { autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out', stagger: 0.07, delay: 0.2 }
+  )
+})
 
 onMounted(() => {
   changeColors({ backgroundColor: '#F5F0E6', color: '#1A2A2F' })
-
-  nextTick(() => {
-    onResize(wrapperEl.value)
-
-    resizeObserver = new ResizeObserver(() => onResize(wrapperEl.value))
-    resizeObserver.observe(wrapperEl.value)
-
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: true })
-    window.addEventListener('touchend', onTouchEnd, { passive: true })
-
-    GSAP.fromTo('.case__hero > *, .case__meta',
-      { autoAlpha: 0, y: 30 },
-      { autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out', stagger: 0.07, delay: 0.2 }
-    )
-
-    emit('page-ready', {
-      scroll,
-      update: () => update(wrapperEl.value),
-      onWheel,
-      onResize: () => onResize(wrapperEl.value)
-    })
-  })
-})
-
-onUnmounted(() => {
-  resizeObserver?.disconnect()
-  window.removeEventListener('touchstart', onTouchStart)
-  window.removeEventListener('touchmove', onTouchMove)
-  window.removeEventListener('touchend', onTouchEnd)
-  reset()
 })
 </script>

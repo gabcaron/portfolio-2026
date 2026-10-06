@@ -1,75 +1,22 @@
-$color-white: #f9f1e7;
-
-$color-contessa: #c97164;
-$color-quicksand: #bc978c;
-$color-cadet-blue: #b2b8c3;
-$color-bright-grey: #37384c;
-
-$font-george-x: 'George X';
-$font-suisse-bp: 'Suisse BP';
-$font-inter: 'Noto Sans', 'Helvetica Neue', sans-serif; // unifié avec Projects
-$font-playfair: 'Noto Serif Display', Georgia, serif; // unifié avec Projects
-
 $ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 $ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 
 $z-indexes: ('preloader', 'navigation', 'content', 'canvas');
 
 // === Palette Backpacker Minimal ===
-
-// Couleurs principales
 $color-sand:       #F5F0E6; // fond carnet
 $color-green:      #3D5C40; // accents, titres
 $color-navy:       #1A2A2F; // texte, contrastes
 $color-brown:      #CBBF9D; // détails papier
-$color-orange:     #D4521A; //#D97B29 // CTA, hover
-
-// Variantes (utiles pour hover / backgrounds)
-$color-sand-dark:  darken($color-sand, 5%);
-$color-green-dark: darken($color-green, 10%);
-$color-green-light: lighten($color-green, 15%);
+$color-orange:     #D4521A; // CTA, hover
 $color-navy-light: lighten($color-navy, 20%);
-$color-orange-dark: darken($color-orange, 10%);
-$color-orange-light: lighten($color-orange, 15%);
 
-// Typographies
-$font-serif: 'Noto Serif Display', Georgia, serif; // unifié avec Projects
-$font-sans:  'Noto Sans', 'Helvetica Neue', sans-serif; // unifié avec Projects
+// === Typographies (une seule paire pour tout le site) ===
+$font-serif: 'Noto Serif Display', Georgia, serif;
+$font-sans:  'Noto Sans', 'Helvetica Neue', sans-serif;
 
-// Typo des pages Projects / Case study
-$font-display: 'Noto Serif Display', Georgia, serif;
-$font-body:    'Noto Sans', 'Helvetica Neue', sans-serif;
-
-// Utilitaires
-$border-radius: 8px;
-$shadow-soft: 0 4px 10px rgba(0,0,0,0.08);
-$shadow-strong: 0 6px 20px rgba(0,0,0,0.15);
-
-// Z-index scale
-$z-header: 1000;
-$z-modal: 2000;
-
-/**
-body {
-  font-family: $font-sans;
-  background: $color-sand;
-  color: $color-navy;
-}
-
-h1, h2, h3 {
-  font-family: $font-serif;
-  color: $color-green;
-}
-
-a.btn {
-  background: $color-orange;
-  color: white;
-  border-radius: $border-radius;
-  box-shadow: $shadow-soft;
-
-  &:hover {
-    background: $color-orange-dark;
-    box-shadow: $shadow-strong;
-  }
-}
-*/
+// Alias historiques, utilisés par les placeholders et certaines pages
+$font-display:  $font-serif;
+$font-body:     $font-sans;
+$font-playfair: $font-serif;
+$font-inter:    $font-sans;

@@ -7,7 +7,6 @@
 @import '~/assets/styles/utils/variables';
 @import '~/assets/styles/utils/functions';
 @import '~/assets/styles/utils/mixins';
-@import '~/assets/styles/utils/vendors';
 @import '~/assets/styles/utils/responsive';
 
 // ------------------------------------ // ------------------------------------------
@@ -18,13 +17,11 @@
 @import '~/assets/styles/shared/titles';
 @import '~/assets/styles/shared/links';
 @import '~/assets/styles/shared/pages';
-@import '~/assets/styles/shared/vertical-titles';
 
 // ------------------------------------ // ------------------------------------------
 // --------------------------------- B A S E ----------------------------------------
 // ------------------------------------ // ------------------------------------------
 
-@import '~/assets/styles/base/fonts';
 @import '~/assets/styles/base/base';
 
 // ------------------------------------ // ------------------------------------------
@@ -49,14 +46,11 @@
 
 // About
 @import '~/assets/styles/pages/about/about';
-@import '~/assets/styles/pages/about/content';
-@import '~/assets/styles/pages/about/gallery';
-@import '~/assets/styles/pages/about/highlight';
 
-// Collections
+// Projects
 @import '~/assets/styles/pages/collections/collections';
 
-// Details
+// Case study
 @import '~/assets/styles/pages/details/details';
 
 // Mentions légales

@@ -22,29 +22,23 @@
 
 <script setup>
 import GSAP from 'gsap'
+import { useReveal } from '~/composables/useReveal'
 
 const ctaEl = ref(null)
 const titleEl = ref(null)
 const emailEl = ref(null)
 const linksEl = ref(null)
-let observer = null
+const { observeOnce } = useReveal()
 
 // Animation d'entrée quand la section arrive à l'écran
 onMounted(() => {
-  observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return
-      GSAP.fromTo(titleEl.value, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: 'expo.out' })
-      GSAP.fromTo(
-        [emailEl.value, linksEl.value],
-        { autoAlpha: 0, y: 20 },
-        { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.15, delay: 0.4 }
-      )
-      observer.disconnect()
-    })
-  }, { threshold: 0.15 })
-  observer.observe(ctaEl.value)
+  observeOnce(ctaEl.value, () => {
+    GSAP.fromTo(titleEl.value, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: 'expo.out' })
+    GSAP.fromTo(
+      [emailEl.value, linksEl.value],
+      { autoAlpha: 0, y: 20 },
+      { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.15, delay: 0.4 }
+    )
+  })
 })
-
-onUnmounted(() => observer?.disconnect())
 </script>

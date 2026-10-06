@@ -32,13 +32,9 @@
 </template>
 
 <script setup>
-const { data: layoutData } = await useFetch('/api/layout')
-const ogImage = computed(() => layoutData.value?.meta?.data?.image?.url || '')
-
 useSEO({
   title: 'Gabin Caron | Web Developer',
   description: 'French web developer crafting immersive digital experiences at the intersection of code & design. WebGL, Vue.js, Nuxt, GSAP.',
-  image: ogImage.value,
   path: '/'
 })
 

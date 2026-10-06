@@ -2,9 +2,6 @@
   @extend %center;
   @extend %page;
 
-  // background: $color-contessa;
-  // color: $color-white;
-
   overflow: hidden;
   text-align: center;
 
@@ -73,11 +70,7 @@
     bottom: 0;
   }
 }
-// .home__wrapper {
-// }
-
 .home__titles {
-  //@extend %vertical-titles;
   position: relative;
   z-index: 2;
   display: inline-flex;
@@ -88,7 +81,6 @@
 
 // Taille finale calculée en JS (index.vue) pour égaler la largeur de "Gabin"
 .home__titles__label {
-  //@extend %vertical-titles__label;
   @extend %description-30;
   font-size: 4.5rem;
   text-transform: uppercase;
@@ -122,7 +114,6 @@
 }
 
 .home__titles__title {
-  //@extend %vertical-titles__title;
   @extend %title-200;
   line-height: 0.9;
 }
@@ -233,33 +224,6 @@
 
   opacity: 1;
 }
-.home__link {
-  @extend %description-14;
-
-  letter-spacing: 0.05;
-  width: 28.84em;
-  height: 6rem;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  text-transform: uppercase;
-  bottom: 5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-
-  @include media('<phone') {
-    bottom: 1rem;
-    width: 55rem;
-    height: 13.7rem;
-  }
-}
-
-.home__link__icon {
-  @extend %cover;
-}
-
 @include media('<phone') {
   .home {
     display: flex;

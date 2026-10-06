@@ -91,27 +91,18 @@
 
 <script setup>
 import GSAP from 'gsap'
-import { useScroll } from '~/composables/useScroll'
 import { useColors } from '~/composables/useColors'
-import { getProjectExtra, splitTitle } from '~/utils/projectsExtra'
-
-const { data: layoutData } = await useFetch('/api/layout')
-const ogImage = computed(() => layoutData.value?.meta?.data?.image?.url || '')
+import { usePageScroll } from '~/composables/usePageScroll'
+import { useReveal } from '~/composables/useReveal'
 
 useSEO({
   title: 'Projects - Gabin Caron | Web Developer',
   description: 'Selected web development projects by Gabin Caron — full-stack applications, creative websites and WebGL experiments.',
-  image: ogImage.value,
   path: '/projects'
 })
 
 const { data } = await useFetch('/api/projects')
-const projects = computed(() =>
-  (data.value?.projects || []).map(p => ({
-    ...p,
-    extra: { ...getProjectExtra(p), titleSplit: splitTitle(p.title) }
-  }))
-)
+const projects = computed(() => data.value?.projects || [])
 
 const yearRange = computed(() => {
   const years = projects.value.map(p => parseInt(p.year)).filter(Boolean)
@@ -129,9 +120,9 @@ const itemEls = ref([])
 
 // --- Scroll ---
 const emit = defineEmits(['page-ready'])
-const { scroll, onWheel, onTouchStart, onTouchMove, onTouchEnd, onResize, update, reset } = useScroll()
 const { change: changeColors } = useColors()
-let resizeObserver = null
+const { observeOnce } = useReveal()
+const { scroll } = usePageScroll(wrapperEl, emit, animateIn)
 
 // Clic sur une ligne de la liste → scroll jusqu'au projet
 function scrollToProject(i) {
@@ -143,15 +134,6 @@ function scrollToProject(i) {
 }
 
 // --- Animations ---
-function observeSection(el, animation) {
-  if (!el) return
-  const observer = new IntersectionObserver(
-    entries => { entries.forEach(e => { if (e.isIntersecting) { animation(); observer.unobserve(el) } }) },
-    { threshold: 0.15 }
-  )
-  observer.observe(el)
-}
-
 function animateIn() {
   GSAP.fromTo('.projects__hero__top > *, .projects__list__row',
     { autoAlpha: 0, y: 30 },
@@ -159,7 +141,7 @@ function animateIn() {
   )
 
   itemEls.value.forEach(el => {
-    observeSection(el, () => {
+    observeOnce(el, () => {
       GSAP.fromTo(el, { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 1.1, ease: 'expo.out' })
     })
   })
@@ -167,34 +149,5 @@ function animateIn() {
 
 onMounted(() => {
   changeColors({ backgroundColor: '#F5F0E6', color: '#1A2A2F' })
-
-  nextTick(() => {
-    onResize(wrapperEl.value)
-
-    // Recalcule la limite de scroll quand la hauteur change (images, polices, responsive)
-    resizeObserver = new ResizeObserver(() => onResize(wrapperEl.value))
-    resizeObserver.observe(wrapperEl.value)
-
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: true })
-    window.addEventListener('touchend', onTouchEnd, { passive: true })
-
-    animateIn()
-
-    emit('page-ready', {
-      scroll,
-      update: () => update(wrapperEl.value),
-      onWheel,
-      onResize: () => onResize(wrapperEl.value)
-    })
-  })
-})
-
-onUnmounted(() => {
-  resizeObserver?.disconnect()
-  window.removeEventListener('touchstart', onTouchStart)
-  window.removeEventListener('touchmove', onTouchMove)
-  window.removeEventListener('touchend', onTouchEnd)
-  reset()
 })
 </script>

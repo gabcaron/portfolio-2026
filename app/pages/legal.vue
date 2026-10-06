@@ -339,7 +339,7 @@
 </template>
 
 <script setup>
-import { useScroll } from '~/composables/useScroll'
+import { usePageScroll } from '~/composables/usePageScroll'
 
 useSEO({
   title: 'Legal Notice - Gabin Caron | Web Developer',
@@ -370,35 +370,5 @@ useHead({
 
 const wrapperEl = ref(null)
 const emit = defineEmits(['page-ready'])
-const { scroll, onWheel, onTouchStart, onTouchMove, onTouchEnd, onResize, update, reset } = useScroll()
-let resizeObserver = null
-
-onMounted(() => {
-  nextTick(() => {
-    onResize(wrapperEl.value)
-
-    // Recalcule la limite de scroll quand la hauteur change (polices, langue, responsive)
-    resizeObserver = new ResizeObserver(() => onResize(wrapperEl.value))
-    resizeObserver.observe(wrapperEl.value)
-
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: true })
-    window.addEventListener('touchend', onTouchEnd, { passive: true })
-
-    emit('page-ready', {
-      scroll,
-      update: () => update(wrapperEl.value),
-      onWheel,
-      onResize: () => onResize(wrapperEl.value)
-    })
-  })
-})
-
-onUnmounted(() => {
-  resizeObserver?.disconnect()
-  window.removeEventListener('touchstart', onTouchStart)
-  window.removeEventListener('touchmove', onTouchMove)
-  window.removeEventListener('touchend', onTouchEnd)
-  reset()
-})
+usePageScroll(wrapperEl, emit)
 </script>

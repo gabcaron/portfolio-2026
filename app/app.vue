@@ -112,7 +112,7 @@ function onWheel(e) {
 
 function loop() {
   currentPage?.update?.()
-  canvas.update(currentPage?.scroll)
+  canvas.update()
   rafId = window.requestAnimationFrame(loop)
 }
 
@@ -134,7 +134,7 @@ function onPageLeave(el, done) {
 
 watch(() => route.fullPath, (newPath, oldPath) => {
   if (!oldPath) return
-  canvas.onChangeStart(canvas.state.template, newPath)
+  canvas.onChangeStart()
 }, { flush: 'pre' })
 
 watch(() => route.name, () => {
