@@ -22,7 +22,7 @@
       <!-- Ligne principale split-flap -->
       <div class="error-page__board__row">
         <div class="error-page__board__cell">
-          <span class="error-page__board__flight">GC404</span>
+          <span class="error-page__board__flight">GC{{ code }}</span>
         </div>
         <div class="error-page__board__cell error-page__board__cell--wide">
           <div class="error-page__flap">
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="error-page__board__cell">
-          <span class="error-page__board__status">NOT FOUND</span>
+          <span class="error-page__board__status">{{ board.status }}</span>
         </div>
       </div>
 
@@ -53,7 +53,7 @@
           </div>
         </div>
         <div class="error-page__board__cell">
-          <span class="error-page__board__status error-page__board__status--dim">CANCELLED</span>
+          <span class="error-page__board__status error-page__board__status--dim">{{ board.statusSub }}</span>
         </div>
       </div>
 
@@ -62,15 +62,16 @@
     <!-- Message et CTA -->
     <div class="error-page__content" ref="contentEl">
       <p class="error-page__message">
-        This destination doesn't exist on our map.<br>
-        The page you're looking for has been lost in transit.
+        {{ board.message[0] }}<br>
+        {{ board.message[1] }}
       </p>
-      <NuxtLink to="/" class="error-page__cta">
+      <!-- clearError : sort proprement de l'état d'erreur de Nuxt avant de revenir à l'accueil -->
+      <a href="/" class="error-page__cta" @click.prevent="goHome">
         Find my way back
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="1.2"/>
         </svg>
-      </NuxtLink>
+      </a>
     </div>
 
     <!-- Heure style aéroport -->
@@ -84,11 +85,92 @@
 <script setup>
 import GSAP from 'gsap'
 
-useHead({ title: '404 — Page Not Found | Gabin Caron' })
+// Nuxt passe l'erreur à cette page : { statusCode, statusMessage, message }
+const props = defineProps({
+  error: { type: Object, default: () => ({}) }
+})
 
-const TARGET_MAIN = 'DESTINATION UNKNOWN'
-const TARGET_SUB  = 'PAGE NOT FOUND    '
+// Textes du tableau selon le code d'erreur
+const BOARDS = {
+  400: {
+    main: 'INVALID ROUTE',
+    sub: 'BAD REQUEST',
+    status: 'REROUTED',
+    statusSub: 'CHECK TICKET',
+    message: ["This route doesn't look right.", 'Please check the address and try again.']
+  },
+  401: {
+    main: 'BOARDING PASS NEEDED',
+    sub: 'UNAUTHORIZED',
+    status: 'CHECK-IN',
+    statusSub: 'REQUIRED',
+    message: ['You need to be signed in to board this flight.', 'Please check in and try again.']
+  },
+  403: {
+    main: 'RESTRICTED AREA',
+    sub: 'ACCESS FORBIDDEN',
+    status: 'DENIED',
+    statusSub: 'CLOSED',
+    message: ['This gate is closed to passengers.', "You don't have access to this page."]
+  },
+  404: {
+    main: 'DESTINATION UNKNOWN',
+    sub: 'PAGE NOT FOUND',
+    status: 'NOT FOUND',
+    statusSub: 'CANCELLED',
+    message: ["This destination doesn't exist on our map.", "The page you're looking for has been lost in transit."]
+  },
+  500: {
+    main: 'TECHNICAL ISSUE',
+    sub: 'SERVER ERROR',
+    status: 'DELAYED',
+    statusSub: 'GROUNDED',
+    message: ['Something went wrong on our side.', 'Our ground crew is already on it — please try again shortly.']
+  },
+  503: {
+    main: 'SERVICE SUSPENDED',
+    sub: 'UNAVAILABLE',
+    status: 'DELAYED',
+    statusSub: 'ON HOLD',
+    message: ['This service is temporarily unavailable.', 'Please try again in a few minutes.']
+  }
+}
+
+const code = computed(() => props.error?.statusCode || 500)
+
+// Codes non listés : texte générique (4xx = côté visiteur, 5xx = côté serveur)
+const board = computed(() => {
+  if (BOARDS[code.value]) return BOARDS[code.value]
+  const isClient = code.value >= 400 && code.value < 500
+  const sub = (props.error?.statusMessage || `ERROR ${code.value}`)
+    .toUpperCase()
+    .normalize('NFD')
+    .replace(/[^A-Z0-9 ]/g, '')
+    .slice(0, 20)
+  return {
+    main: isClient ? 'ROUTE UNAVAILABLE' : 'UNEXPECTED ISSUE',
+    sub,
+    status: isClient ? 'CANCELLED' : 'DELAYED',
+    statusSub: `CODE ${code.value}`,
+    message: isClient
+      ? ["This flight can't depart.", 'Something is wrong with this request.']
+      : ['Something went wrong on our side.', 'Please try again shortly.']
+  }
+})
+
+useHead({
+  title: computed(() => `${code.value} — ${props.error?.statusMessage || board.value.sub} | Gabin Caron`)
+})
+
+// Les deux lignes du tableau font la même longueur (comme sur un vrai panneau)
+const width = computed(() => Math.max(board.value.main.length, board.value.sub.length))
+const TARGET_MAIN = board.value.main.padEnd(width.value, ' ')
+const TARGET_SUB = board.value.sub.padEnd(width.value, ' ')
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 —·'
+
+function goHome() {
+  clearError({ redirect: '/' })
+}
 
 const displayChars = ref(TARGET_MAIN.split('').map(() => ' '))
 const displayCharsSub = ref(TARGET_SUB.split('').map(() => ' '))
