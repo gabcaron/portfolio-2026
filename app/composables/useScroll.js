@@ -1,5 +1,8 @@
 import GSAP from 'gsap'
 
+const LERP = 0.1          // force du lissage, pour un écran 60 Hz
+const FRAME_MS = 1000 / 60
+
 export function useScroll() {
   const scroll = reactive({
     current: 0,
@@ -8,14 +11,7 @@ export function useScroll() {
     limit: 0
   })
 
-  let transformPrefix = null
-
-  if (typeof window !== 'undefined') {
-    // Detect vendor prefix for transform (équivalent de Prefix('transform'))
-    const el = document.createElement('div')
-    const props = ['transform', 'webkitTransform', 'MozTransform']
-    transformPrefix = props.find(p => el.style[p] !== undefined) || 'transform'
-  }
+  let lastTime = 0
 
   function onWheel({ pixelY }) {
     scroll.target += pixelY
@@ -44,19 +40,28 @@ export function useScroll() {
 
   function onResize(wrapper) {
     if (wrapper) {
-      scroll.limit = wrapper.clientHeight - window.innerHeight
+      scroll.limit = Math.max(0, wrapper.clientHeight - window.innerHeight)
     }
   }
 
   function update(wrapper) {
+    // Temps écoulé depuis la dernière image, en "images à 60 Hz"
+    // (plafonné pour éviter un saut après un onglet en arrière-plan)
+    const now = performance.now()
+    const frames = lastTime ? Math.min((now - lastTime) / FRAME_MS, 4) : 1
+    lastTime = now
+
     scroll.target = GSAP.utils.clamp(0, scroll.limit, scroll.target)
 
-    scroll.current = GSAP.utils.interpolate(scroll.current, scroll.target, 0.1)
+    // Lissage indépendant de la fréquence d'écran (60, 120, 144 Hz…)
+    const ease = 1 - Math.pow(1 - LERP, frames)
+    scroll.current = GSAP.utils.interpolate(scroll.current, scroll.target, ease)
 
-    if (scroll.current < 0.01) scroll.current = 0
+    if (Math.abs(scroll.target - scroll.current) < 0.01) scroll.current = scroll.target
 
-    if (wrapper && transformPrefix) {
-      wrapper.style[transformPrefix] = `translateY(-${scroll.current}px)`
+    if (wrapper) {
+      // translate3d : déplacement géré par la carte graphique, sans redessiner la page
+      wrapper.style.transform = `translate3d(0, ${-scroll.current}px, 0)`
     }
 
     scroll.last = scroll.current
@@ -67,6 +72,7 @@ export function useScroll() {
     scroll.target = 0
     scroll.last = 0
     scroll.limit = 0
+    lastTime = 0
   }
 
   return { scroll, onWheel, onTouchStart, onTouchMove, onTouchEnd, onResize, update, reset }
