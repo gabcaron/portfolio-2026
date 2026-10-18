@@ -56,8 +56,7 @@
           <p>
             Le site est hébergé par <strong>Vercel, Inc.</strong><br>
             340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis<br>
-            Contact : <a href="mailto:support@vercel.com">support@vercel.com</a> —
-            <a href="https://vercel.com/legal" target="_blank" rel="noopener noreferrer">vercel.com/legal</a>
+            Contact : <a href="https://vercel.com/legal" target="_blank" rel="noopener noreferrer">vercel.com/legal</a>
           </p>
           <p>
             Nom de domaine : gabincaron.com<br>
@@ -241,8 +240,7 @@
           <p>
             This website is hosted by <strong>Vercel, Inc.</strong><br>
             340 S Lemon Ave #4133, Walnut, CA 91789, USA<br>
-            Contact: <a href="mailto:support@vercel.com">support@vercel.com</a> —
-            <a href="https://vercel.com/legal" target="_blank" rel="noopener noreferrer">vercel.com/legal</a>
+            Contact: <a href="https://vercel.com/legal" target="_blank" rel="noopener noreferrer">vercel.com/legal</a>
           </p>
           <p>
             Domain name: gabincaron.com<br>
