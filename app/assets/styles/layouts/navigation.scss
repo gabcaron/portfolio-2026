@@ -43,7 +43,7 @@
   }
     */
 
-  @include media('<phone') {
+  @include media('<tablet') {
     left: 5rem;
     top: 5rem;
     width: 27.9rem;
@@ -84,7 +84,7 @@
   padding-bottom: 0.4rem;
   font-weight: 300;
 
-  @include media('<phone') {
+  @include media('<tablet') {
     right: 5rem;
     top: 5rem;
     width: 27.9rem;
@@ -171,7 +171,7 @@
 
   &__tag {
     font-family: $font-sans;
-    font-size: 1.1rem;
+    font-size: var(--fs-caption);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: $color-orange;
@@ -181,7 +181,7 @@
 
   &__title {
     font-family: $font-serif;
-    font-size: clamp(4rem, 7vw, 6rem);
+    font-size: var(--fs-h4);
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -197,7 +197,7 @@
 
   &__desc {
     font-family: $font-sans;
-    font-size: 1.5rem;
+    font-size: var(--fs-body);
     font-weight: 300;
     line-height: 1.7;
     color: rgba($color-navy, 0.6);
@@ -212,7 +212,7 @@
     align-items: center;
     gap: 0.8rem;
     font-family: $font-sans;
-    font-size: 1.6rem;
+    font-size: var(--fs-body);
     font-weight: 400;
     color: $color-navy;
     text-decoration: none;
@@ -244,7 +244,7 @@
 
   &__social {
     font-family: $font-sans;
-    font-size: 1.2rem;
+    font-size: var(--fs-small);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: $color-navy;
@@ -267,7 +267,7 @@
 
     span {
       font-family: $font-sans;
-      font-size: 1.1rem;
+      font-size: var(--fs-caption);
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: rgba($color-navy, 0.6);
@@ -278,7 +278,7 @@
       align-items: center;
       gap: 0.6rem;
       font-family: $font-sans;
-      font-size: 1.1rem;
+      font-size: var(--fs-caption);
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: $color-brown; // couleur de base = "Not available"
@@ -377,7 +377,7 @@
   &__link {
     display: block;
     font-family: $font-serif;
-    font-size: clamp(4rem, 12vw, 6rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     color: $color-navy;
     text-decoration: none;
@@ -395,7 +395,7 @@
 
   &__contact {
     font-family: $font-serif;
-    font-size: clamp(4rem, 12vw, 6rem);
+    font-size: var(--fs-h2);
   }
 
   &__footer {
@@ -409,7 +409,7 @@
     align-items: center;
     gap: 0.6rem;
     font-family: $font-sans;
-    font-size: 1.2rem;
+    font-size: var(--fs-caption);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: $color-brown;
@@ -432,7 +432,7 @@
 }
 
 // Responsive
-@include media('<phone') {
+@include media('<tablet') {
   .navigation__list--desktop,
   .navigation__link__right--desktop {
     display: none;
@@ -443,21 +443,22 @@
     top: 1.6rem;
     width: auto;
     height: auto;
-    font-size: 3.2rem;
     line-height: 1.2;
   }
 
-  // Hamburger — 3 traits
+  // Hamburger — 3 traits fins (style macarondev.fr), devient la croix quand le menu est ouvert
   .navigation__hamburger {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 3px; // traits espacés de 5px d'axe en axe
     position: absolute;
-    right: 2rem;
-    top: 1.6rem;
-    width: 3.2rem;
-    height: 3.2rem;
+    // Zone tactile 44px, icône de 16px alignée sur la marge de 3rem et centrée sur le logo
+    right: calc(3rem - 14px);
+    top: calc(3.52rem - 22px);
+    width: 44px;
+    height: 44px;
     background: none;
     border: none;
     cursor: pointer;
@@ -467,29 +468,21 @@
 
     span {
       display: block;
-      width: 100%;
-      height: 1.5px;
+      width: 16px;
+      height: 2px;
       background: $color-navy;
-      transition: transform 0.3s $ease-out-expo, opacity 0.3s $ease-out-expo;
+      transition: transform 0.3s $ease-out-expo, opacity 0.2s $ease-out-expo;
       transform-origin: center;
     }
 
-    // Caché quand le menu est ouvert (la croix du menu prend le relais)
-    &--open {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    // Croix quand ouvert
     &--open span:nth-child(1) {
-      transform: translateY(6.5px) rotate(45deg);
+      transform: translateY(5px) rotate(45deg);
     }
     &--open span:nth-child(2) {
       opacity: 0;
-      transform: scaleX(0);
     }
     &--open span:nth-child(3) {
-      transform: translateY(-6.5px) rotate(-45deg);
+      transform: translateY(-5px) rotate(-45deg);
     }
   }
 
@@ -524,37 +517,11 @@
 
     &__logo {
       font-family: $font-sans;
-      font-size: 3.2rem;
+      font-size: var(--fs-body);
       font-weight: 300;
       color: $color-navy;
       text-decoration: none;
       letter-spacing: 0.02em;
-    }
-
-    &__close {
-      position: relative;
-      width: 3.2rem;
-      height: 3.2rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-
-      span {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 1.5px;
-        background: $color-navy;
-
-        &:first-child {
-          transform: translate(-50%, -50%) rotate(45deg);
-        }
-        &:last-child {
-          transform: translate(-50%, -50%) rotate(-45deg);
-        }
-      }
     }
 
     &__list {
@@ -569,7 +536,6 @@
     &__link {
       display: block;
       font-family: $font-serif;
-      font-size: 12rem;
       font-weight: 300;
       color: $color-navy;
       text-decoration: none;
@@ -600,7 +566,6 @@
       align-items: center;
       gap: 1.4rem;
       font-family: $font-sans;
-      font-size: 2.8rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: $color-brown;
@@ -627,7 +592,7 @@
   }
 }
 // Contact panel — plein écran mobile
-@include media('<phone') {
+@include media('<tablet') {
   .contact-panel {
     &__drawer {
       width: 100%;
@@ -647,17 +612,15 @@
     }
 
     &__tag {
-      font-size: 2.2rem;
       margin-bottom: 4rem;
     }
 
     &__title {
-      font-size: 13rem;
+      font-size: var(--fs-h2);
       margin-bottom: 5rem;
     }
 
     &__desc {
-      font-size: 3rem;
       line-height: 1.6;
       margin-bottom: 5rem;
       padding-bottom: 5rem;
@@ -667,7 +630,7 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
-      font-size: 3.4rem;
+      font-size: var(--fs-lead);
       padding-bottom: 1.2rem;
 
       svg {
@@ -682,17 +645,8 @@
       margin-top: 5rem;
     }
 
-    &__social {
-      font-size: 2.6rem;
-    }
-
     &__footer {
       padding-top: 4rem;
-
-      span,
-      .contact-panel__availability {
-        font-size: 2.2rem;
-      }
 
       .contact-panel__availability {
         gap: 1.2rem;

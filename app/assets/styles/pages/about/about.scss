@@ -20,7 +20,7 @@
       span {
         display: block;
         font-family: $font-serif;
-        font-size: clamp(8rem, 16vw, 18rem);
+        font-size: var(--fs-h1);
         font-weight: 300;
         letter-spacing: -0.03em;
         color: $color-navy;
@@ -30,7 +30,7 @@
     &__sub {
       margin-top: 4rem;
       font-family: $font-sans;
-      font-size: clamp(1.4rem, 1.8vw, 2rem);
+      font-size: var(--fs-lead);
       font-weight: 300;
       line-height: 1.6;
       color: $color-navy;
@@ -75,7 +75,7 @@
         display: block;
         margin-top: 1.6rem;
         font-family: $font-sans;
-        font-size: 1.1rem;
+        font-size: var(--fs-caption);
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: $color-brown;
@@ -96,7 +96,7 @@
 
     &__tag {
       font-family: $font-sans;
-      font-size: 1.1rem;
+      font-size: var(--fs-caption);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: $color-orange;
@@ -106,7 +106,7 @@
 
     &__bio {
       font-family: $font-sans;
-      font-size: clamp(1.5rem, 1.8vw, 2rem);
+      font-size: var(--fs-body);
       font-weight: 300;
       line-height: 1.7;
       color: $color-navy;
@@ -134,7 +134,7 @@
 
       &__label {
         font-family: $font-sans;
-        font-size: 1rem;
+        font-size: var(--fs-caption);
         letter-spacing: 0.12em;
         text-transform: uppercase;
         color: $color-brown;
@@ -142,7 +142,7 @@
 
       &__value {
         font-family: $font-sans;
-        font-size: 1.4rem;
+        font-size: var(--fs-small);
         font-weight: 500;
         color: $color-navy;
       }
@@ -163,7 +163,7 @@
 
     &__tag {
       font-family: $font-sans;
-      font-size: 1.1rem;
+      font-size: var(--fs-caption);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: $color-orange;
@@ -171,7 +171,7 @@
 
     &__title {
       font-family: $font-serif;
-      font-size: clamp(4rem, 7vw, 8rem);
+      font-size: var(--fs-h3);
       font-weight: 300;
       line-height: 1;
       letter-spacing: -0.02em;
@@ -191,7 +191,7 @@
       &__name {
         display: block;
         font-family: $font-sans;
-        font-size: 1rem;
+        font-size: var(--fs-caption);
         letter-spacing: 0.12em;
         text-transform: uppercase;
         color: $color-brown;
@@ -212,7 +212,7 @@
 
     &__item {
       font-family: $font-sans;
-      font-size: 1.5rem;
+      font-size: var(--fs-small);
       font-weight: 300;
       color: $color-navy;
       padding: 0.8rem 0;
@@ -241,7 +241,7 @@
     &__tag {
       display: block;
       font-family: $font-sans;
-      font-size: 1.1rem;
+      font-size: var(--fs-caption);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: $color-orange;
@@ -250,7 +250,7 @@
 
     &__quote {
       font-family: $font-serif;
-      font-size: clamp(2.4rem, 4vw, 5rem);
+      font-size: var(--fs-h4);
       font-weight: 300;
       line-height: 1.3;
       color: $color-sand;
@@ -277,7 +277,7 @@
       &__number {
         display: block;
         font-family: $font-sans;
-        font-size: 1rem;
+        font-size: var(--fs-caption);
         letter-spacing: 0.15em;
         color: $color-brown;
         margin-bottom: 2rem;
@@ -285,7 +285,7 @@
 
       h3 {
         font-family: $font-serif;
-        font-size: 2.4rem;
+        font-size: var(--fs-h5);
         font-weight: 300;
         color: $color-sand;
         margin-bottom: 1.6rem;
@@ -294,7 +294,7 @@
 
       p {
         font-family: $font-sans;
-        font-size: 1.4rem;
+        font-size: var(--fs-body);
         font-weight: 300;
         line-height: 1.7;
         color: rgba($color-sand, 0.6);
@@ -314,7 +314,7 @@
 
     &__title {
       font-family: $font-serif;
-      font-size: clamp(6rem, 12vw, 14rem);
+      font-size: var(--fs-h2);
       font-weight: 300;
       line-height: 0.95;
       letter-spacing: -0.03em;
@@ -333,7 +333,7 @@
       align-items: center;
       gap: 1rem;
       font-family: $font-sans;
-      font-size: clamp(1.6rem, 2.5vw, 2.8rem);
+      font-size: var(--fs-lead);
       font-weight: 400;
       color: $color-navy;
       text-decoration: none;
@@ -361,7 +361,7 @@
 
     &__link {
       font-family: $font-sans;
-      font-size: 1.3rem;
+      font-size: var(--fs-small);
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: $color-navy;
@@ -374,7 +374,7 @@
   }
 }
 
-@include media('<phone') {
+@include media('<tablet') {
   .about {
     &__hero {
       padding: 14rem 3rem 5rem;
@@ -384,7 +384,6 @@
         display: inline;
 
         span {
-          font-size: 16rem;
           display: inline;
         }
       }
@@ -395,7 +394,6 @@
       }
 
       &__sub {
-        font-size: 3rem;
         margin-top: 3rem;
         max-width: none;
         display: block; // repasse en block pour les 3 lignes
@@ -412,18 +410,15 @@
         top: auto;
 
         &__label {
-          font-size: 2rem;
           margin-top: 2rem;
         }
       }
 
       &__tag {
-        font-size: 2.2rem;
         margin-bottom: 4rem;
       }
 
       &__bio {
-        font-size: 3rem;
         line-height: 1.6;
         margin-bottom: 3rem;
       }
@@ -442,13 +437,6 @@
           gap: 1rem;
         }
 
-        &__label {
-          font-size: 2rem;
-        }
-
-        &__value {
-          font-size: 2.8rem;
-        }
       }
     }
 
@@ -462,12 +450,7 @@
         margin-bottom: 6rem;
       }
 
-      &__tag {
-        font-size: 2.2rem;
-      }
-
       &__title {
-        font-size: 10rem;
         text-align: left;
       }
 
@@ -477,7 +460,6 @@
       }
 
       &__category__name {
-        font-size: 2rem;
         margin-bottom: 2rem;
         padding-bottom: 1.6rem;
       }
@@ -487,7 +469,6 @@
       }
 
       &__item {
-        font-size: 2.8rem;
         padding: 1.2rem 0;
       }
     }
@@ -496,12 +477,10 @@
       padding: 8rem 3rem;
 
       &__tag {
-        font-size: 2.2rem;
         margin-bottom: 5rem;
       }
 
       &__quote {
-        font-size: 5.6rem;
         margin-bottom: 8rem;
         max-width: none;
       }
@@ -513,17 +492,14 @@
 
       &__pillar {
         &__number {
-          font-size: 2rem;
           margin-bottom: 2rem;
         }
 
         h3 {
-          font-size: 5rem;
           margin-bottom: 2rem;
         }
 
         p {
-          font-size: 2.8rem;
           line-height: 1.6;
         }
       }
@@ -537,7 +513,6 @@
       }
 
       &__title {
-        font-size: 13rem;
         margin-bottom: 6rem;
       }
 
@@ -545,7 +520,6 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        font-size: 3.4rem;
         padding-bottom: 1.2rem;
 
         svg {
@@ -561,9 +535,6 @@
         margin-top: 5rem;
       }
 
-      &__link {
-        font-size: 2.6rem;
-      }
     }
   }
 }

@@ -67,10 +67,11 @@
           </div>
         </section>
 
-        <!-- ⑤ VISUELS (placeholders) -->
-        <section class="case__visuals">
-          <div class="case__placeholder">[Mobile screens]</div>
-          <div class="case__placeholder">[Detail: a key page or component]</div>
+        <!-- ⑤ VISUELS : masqués tant que Prismic n'en fournit pas -->
+        <section v-if="project.visuals?.length" class="case__visuals">
+          <figure v-for="(visual, i) in project.visuals" :key="i" class="case__visual">
+            <img :src="visual.url" :alt="visual.alt || ''" class="loaded" loading="lazy">
+          </figure>
         </section>
 
         <!-- ⑥ NEXT PROJECT -->

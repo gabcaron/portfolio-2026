@@ -15,8 +15,33 @@ html {
   background: $color-sand;
   color: $color-navy;
 
-  @include media('<phone') {
-    font-size: calc($vw / 750px * 10px);
+  // ---- Échelle typographique ----
+  // Texte (sans) : rapport ~1.25 ; titres (serif) : rapport ~1.5. Planchers en px pour la lisibilité.
+  --fs-caption: max(1.4rem, 14px); // labels, tags, footer
+  --fs-small:   max(1.8rem, 15px); // nav, liens, métadonnées
+  --fs-body:    max(2.2rem, 16px); // paragraphes
+  --fs-lead:    max(2.8rem, 18px); // intros, accroches
+  --fs-h5: 3.6rem;
+  --fs-h4: 5.4rem;
+  --fs-h3: 8rem;
+  --fs-h2: 12rem;
+  --fs-h1: 18rem;
+  --fs-display: 20rem; // "Gabin" de l'accueil
+
+  // Téléphones : proportionnel à l'écran. Tablettes (jusqu'à 1023px) : plafonné pour ne pas tout agrandir.
+  @include media('<tablet') {
+    font-size: min(calc($vw / 750px * 10px), 6.4px);
+
+    --fs-caption: max(2.4rem, 14px);
+    --fs-small:   max(2.8rem, 15px);
+    --fs-body:    max(3.2rem, 16px);
+    --fs-lead:    max(3.6rem, 18px);
+    --fs-h5: 4.8rem;
+    --fs-h4: 6rem;
+    --fs-h3: 9rem;
+    --fs-h2: 12rem;
+    --fs-h1: 15rem;
+    --fs-display: 30vw;
   }
 }
 

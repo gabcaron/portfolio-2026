@@ -9,7 +9,7 @@ export function useGL() {
   function init() {
     if (renderer || typeof window === 'undefined') return
 
-    renderer = new Renderer({ alpha: true, antialias: true })
+    renderer = new Renderer({ alpha: true, antialias: true, premultipliedAlpha: true })
 
     camera = new Camera(renderer.gl)
     camera.position.z = 5

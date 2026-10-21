@@ -51,6 +51,8 @@ export default defineEventHandler(async (event) => {
         tech: data.tags?.map(t => t.tag).filter(Boolean) || [],
         link: safeUrl(data.link),
         image: data.image?.url,
+        // Champ groupe Prismic "visuals" (sous-champ "image") : vide = section masquée
+        visuals: data.visuals?.map(v => v.image).filter(img => img?.url) || [],
         extra
       }
     })

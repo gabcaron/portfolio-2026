@@ -9,7 +9,22 @@ $color-green:      #3D5C40; // accents, titres
 $color-navy:       #1A2A2F; // texte, contrastes
 $color-brown:      #CBBF9D; // détails papier
 $color-orange:     #D4521A; // CTA, hover
-$color-navy-light: #3E6571; // = lighten($color-navy, 20%), écrit en dur (lighten() est déprécié)
+$color-navy-light: #3E6571;
+$color-shadow:     #4A3822; // brun chaud : ombres "papier sur papier" (le marine grisait le sable)
+
+// Ombre des visuels projets : liseré + contact serré + halo diffus, à faible opacité
+$shadow-paper:
+  0 0 0 1px rgba($color-shadow, 0.08),
+  0 0.2rem 0.4rem rgba($color-shadow, 0.06),
+  0 1.2rem 2.4rem -0.8rem rgba($color-shadow, 0.12),
+  0 3.2rem 6.4rem -2.4rem rgba($color-shadow, 0.14);
+
+// Survol : la feuille se soulève un peu
+$shadow-paper-hover:
+  0 0 0 1px rgba($color-shadow, 0.1),
+  0 0.4rem 0.8rem rgba($color-shadow, 0.06),
+  0 2rem 4rem -1.2rem rgba($color-shadow, 0.16),
+  0 5.6rem 9.6rem -3.2rem rgba($color-shadow, 0.18); // = lighten($color-navy, 20%), écrit en dur (lighten() est déprécié)
 
 // === Typographies (une seule paire pour tout le site) ===
 $font-serif: 'Noto Serif Display', Georgia, serif;

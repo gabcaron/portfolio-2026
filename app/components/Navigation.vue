@@ -20,7 +20,8 @@
       class="navigation__hamburger"
       :class="{ 'navigation__hamburger--open': mobileMenuOpen }"
       @click="toggleMobileMenu"
-      aria-label="Menu"
+      :aria-label="mobileMenuOpen ? 'Close menu' : 'Open menu'"
+      :aria-expanded="mobileMenuOpen"
     >
       <span></span>
       <span></span>
@@ -33,10 +34,6 @@
         <NuxtLink to="/" class="navigation__mobile__logo" @click="closeMobileMenu">
           Gabin Caron
         </NuxtLink>
-        <button class="navigation__mobile__close" @click="closeMobileMenu" aria-label="Fermer">
-          <span></span>
-          <span></span>
-        </button>
       </div>
 
       <ul class="navigation__mobile__list">
@@ -99,8 +96,8 @@
           </svg>
         </a>
         <div class="contact-panel__socials">
-          <a href="https://github.com/gabcaron" target="_blank" rel="noopener noreferrer" class="contact-panel__social">GitHub ↗</a>
-          <a href="https://linkedin.com/in/gab-caron/" target="_blank" rel="noopener noreferrer" class="contact-panel__social">LinkedIn ↗</a>
+          <a href="https://github.com/gabcaron" target="_blank" rel="noopener noreferrer" class="contact-panel__social">GitHub <ArrowIcon /></a>
+          <a href="https://linkedin.com/in/gab-caron/" target="_blank" rel="noopener noreferrer" class="contact-panel__social">LinkedIn <ArrowIcon /></a>
         </div>
         <div class="contact-panel__footer">
           <span>Based in {{ props.navigation?.data?.localisation }}</span>

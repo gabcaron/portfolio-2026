@@ -25,7 +25,7 @@
 
     &__btn {
       font-family: $font-sans;
-      font-size: 1.1rem;
+      font-size: var(--fs-caption);
       letter-spacing: 0.1em;
       color: rgba($color-navy, 0.3);
       background: none;
@@ -46,7 +46,7 @@
 
     &__sep {
       font-family: $font-sans;
-      font-size: 1.1rem;
+      font-size: var(--fs-caption);
       color: rgba($color-navy, 0.2);
     }
   }
@@ -54,7 +54,7 @@
   &__back {
     display: inline-block;
     font-family: $font-sans;
-    font-size: 1.2rem;
+    font-size: var(--fs-small);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: $color-orange;
@@ -67,7 +67,7 @@
 
   &__title {
     font-family: $font-serif;
-    font-size: clamp(4rem, 7vw, 7rem);
+    font-size: var(--fs-h4);
     font-weight: 300;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -81,7 +81,7 @@
 
   &__intro {
     font-family: $font-sans;
-    font-size: 1.6rem;
+    font-size: var(--fs-lead);
     font-weight: 300;
     line-height: 1.8;
     color: rgba($color-navy, 0.6);
@@ -93,7 +93,7 @@
 
     &__title {
       font-family: $font-sans;
-      font-size: 1.1rem;
+      font-size: var(--fs-caption);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: $color-orange;
@@ -102,7 +102,7 @@
 
     p {
       font-family: $font-sans;
-      font-size: 1.5rem;
+      font-size: var(--fs-body);
       font-weight: 300;
       line-height: 1.7;
       color: rgba($color-navy, 0.7);
@@ -131,7 +131,7 @@
 
         li {
           font-family: $font-sans;
-          font-size: 1.5rem;
+          font-size: var(--fs-body);
           font-weight: 300;
           line-height: 1.7;
           color: rgba($color-navy, 0.7);
@@ -147,13 +147,13 @@
 
     p {
       font-family: $font-sans;
-      font-size: 1.1rem;
+      font-size: var(--fs-caption);
       color: rgba($color-navy, 0.3);
     }
   }
 }
 
-@include media('<phone') {
+@include media('<tablet') {
   .legal {
     padding-top: 12rem;
 
@@ -166,7 +166,6 @@
     }
 
     &__back {
-      font-size: 2.8rem;
       margin-bottom: 0;
       padding: 1rem 0;
     }
@@ -175,27 +174,22 @@
       gap: 1.6rem;
 
       &__btn {
-        font-size: 2.8rem;
         padding: 1rem 0.6rem;
       }
 
-      &__sep {
-        font-size: 2.8rem;
-      }
     }
 
     &__title {
-      font-size: 11rem;
+      font-size: var(--fs-h2);
     }
 
     &__updated {
-      font-size: 2.4rem;
+      font-size: var(--fs-caption);
       padding-top: 2rem;
       padding-bottom: 3rem;
     }
 
     &__intro {
-      font-size: 3rem;
       line-height: 1.6;
     }
 
@@ -203,12 +197,10 @@
       padding: 5rem 0;
 
       &__title {
-        font-size: 2.2rem;
         margin-bottom: 3rem;
       }
 
       p {
-        font-size: 2.8rem;
         line-height: 1.6;
         margin-bottom: 2rem;
       }
@@ -218,7 +210,6 @@
         margin: 2rem 0;
 
         li {
-          font-size: 2.8rem;
           line-height: 1.6;
           margin-bottom: 1.2rem;
         }
@@ -228,9 +219,6 @@
     &__footer {
       padding-top: 5rem;
 
-      p {
-        font-size: 2.2rem;
-      }
     }
   }
 }

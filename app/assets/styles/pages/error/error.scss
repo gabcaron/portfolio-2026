@@ -22,7 +22,7 @@
 
     &__logo {
         font-family: $font-sans;
-        font-size: 1.6rem;
+        font-size: var(--fs-small);
         font-weight: 300;
         color: $color-sand;
         text-decoration: none;
@@ -39,7 +39,7 @@
 
     &__link {
         font-family: $font-sans;
-        font-size: 1.6rem;
+        font-size: var(--fs-small);
         font-weight: 300;
         color: $color-sand;
         text-decoration: none;
@@ -68,7 +68,7 @@
 
       span {
         font-family: $font-sans;
-        font-size: 1rem;
+        font-size: var(--fs-caption);
         letter-spacing: 0.2em;
         text-transform: uppercase;
         color: rgba($color-sand, 0.35);
@@ -100,7 +100,7 @@
 
     &__flight {
       font-family: $font-sans;
-      font-size: 1.8rem;
+      font-size: var(--fs-small);
       font-weight: 600;
       letter-spacing: 0.1em;
       color: $color-orange;
@@ -113,7 +113,7 @@
 
     &__status {
       font-family: $font-sans;
-      font-size: 1.4rem;
+      font-size: var(--fs-caption);
       font-weight: 500;
       letter-spacing: 0.1em;
       color: $color-orange;
@@ -121,7 +121,7 @@
       &--dim {
         color: rgba($color-sand, 0.2);
         font-weight: 300;
-        font-size: 1.2rem;
+        font-size: var(--fs-caption);
       }
     }
   }
@@ -149,7 +149,7 @@
       transform-origin: center;
 
       &--sub {
-        font-size: 1.8rem;
+        font-size: max(1.8rem, 14px);
         font-weight: 400;
         color: rgba($color-sand, 0.5);
         min-width: 1.2rem;
@@ -165,7 +165,7 @@
 
   &__message {
     font-family: $font-sans;
-    font-size: 1.5rem;
+    font-size: var(--fs-body);
     font-weight: 300;
     line-height: 1.8;
     color: rgba($color-sand, 0.5);
@@ -177,7 +177,7 @@
     align-items: center;
     gap: 0.8rem;
     font-family: $font-sans;
-    font-size: 1.3rem;
+    font-size: var(--fs-small);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: $color-sand;
@@ -201,14 +201,14 @@
     bottom: 4rem;
     right: 4rem;
     font-family: $font-sans;
-    font-size: 1.2rem;
+    font-size: var(--fs-caption);
     letter-spacing: 0.15em;
     color: rgba($color-sand, 0.25);
     opacity: 0;
   }
 }
 
-@include media('<phone') {
+@include media('<tablet') {
   .error-page {
     padding: 3rem;
     gap: 6rem;
@@ -216,9 +216,8 @@
     &__nav {
       padding: 3rem;
 
-      &__logo { font-size: 3.2rem; }
+      &__logo { font-size: var(--fs-body); }
       &__links { gap: 3rem; }
-      &__link { font-size: 2.8rem; }
     }
 
     &__board {
@@ -230,7 +229,6 @@
         padding: 1.6rem 2.4rem;
 
         span {
-          font-size: 1.8rem;
 
           &:nth-child(2) { display: none; }
         }
@@ -256,13 +254,6 @@
         }
       }
 
-      &__flight { font-size: 2.6rem; }
-
-      &__status {
-        font-size: 2.2rem;
-
-        &--dim { font-size: 2rem; }
-      }
     }
 
     &__flap {
@@ -274,20 +265,18 @@
       }
 
       &__char--sub {
-        font-size: 2.4rem;
+        font-size: max(2.4rem, 14px);
         min-width: 1.9rem;
       }
     }
 
     &__message {
-      font-size: 2.8rem;
       line-height: 1.6;
       margin-bottom: 5rem;
     }
 
     &__cta {
       gap: 1.2rem;
-      font-size: 2.6rem;
       padding-bottom: 1rem;
 
       svg {
@@ -299,7 +288,6 @@
     &__clock {
       bottom: 3rem;
       right: 3rem;
-      font-size: 2.2rem;
     }
   }
 }

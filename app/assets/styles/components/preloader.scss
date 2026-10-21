@@ -18,7 +18,7 @@
 
   &__text {
     font-family: $font-serif;
-    font-size: clamp(3rem, 6vw, 7rem);
+    font-size: var(--fs-h4);
     font-weight: 300;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -35,7 +35,7 @@
   &__number {
     &__text {
       font-family: $font-sans;
-      font-size: 1.2rem;
+      font-size: var(--fs-caption);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: $color-navy;
@@ -59,7 +59,7 @@
   }
 }
 
-@include media('<phone') {
+@include media('<tablet') {
   .preloader {
     z-index: 9999;
     width: 100%;
@@ -72,7 +72,7 @@
     }
 
     &__text {
-      font-size: 9.5vw;
+      font-size: var(--fs-h3);
       line-height: 1.1;
       text-align: left;
     }

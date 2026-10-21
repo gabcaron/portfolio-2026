@@ -27,7 +27,7 @@
             <span class="projects__list__number">{{ number(i) }}</span>
             <span class="projects__list__title">{{ project.title }}</span>
             <span class="projects__list__summary">{{ project.extra.summary }}</span>
-            <span class="projects__list__year">{{ project.year }} ↗</span>
+            <span class="projects__list__year">{{ project.year }} <ArrowIcon /></span>
           </li>
         </ul>
       </section>
@@ -129,7 +129,7 @@ function scrollToProject(i) {
   const el = itemEls.value[i]
   if (!el || !wrapperEl.value) return
   const offset = el.getBoundingClientRect().top - wrapperEl.value.getBoundingClientRect().top
-  const navHeight = window.innerWidth < 768 ? 60 : 80
+  const navHeight = window.innerWidth < 1024 ? 60 : 80
   scroll.target = Math.min(Math.max(offset - navHeight, 0), scroll.limit)
 }
 
