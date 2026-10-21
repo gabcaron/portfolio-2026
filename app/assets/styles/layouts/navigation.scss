@@ -455,8 +455,10 @@
     gap: 3px; // traits espacés de 5px d'axe en axe
     position: absolute;
     // Zone tactile 44px, icône de 16px alignée sur la marge de 3rem et centrée sur le logo
+    // (logo : top 1.6rem, line-height 1.2 → son centre est à 1.6rem + 0.6 × sa taille)
     right: calc(3rem - 14px);
-    top: calc(3.52rem - 22px);
+    top: calc(1.6rem + var(--fs-body) * 0.6 - 22px);
+    transform: none; // annule le translateY(-50%) du style desktop
     width: 44px;
     height: 44px;
     background: none;
