@@ -94,9 +94,10 @@ export default defineNuxtConfig({
         { rel: 'preload', href: '/fonts/noto-sans-300.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
         { rel: 'preload', href: '/fonts/noto-serif-display-300-italic.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
         // Favicon boussole : SVG pour les navigateurs récents, .ico en secours
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
+        // ?v=2 : force Safari iOS / Vercel à oublier l'ancienne icône Nuxt en cache (incrémenter si l'icône change)
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg?v=2' },
+        { rel: 'icon', href: '/favicon.ico?v=2', sizes: '48x48' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png?v=2' }
       ]
     }
   }
